@@ -1,28 +1,54 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Navigation></Navigation>
+    <router-view/>
+<!--    <button @click="checkSesionForUserLogedIn"> wtf </button>-->
+<!--    <p>{{check}} !!!</p>-->
+    <span class="toLearn"></span>
   </div>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
+
+
+
+import requestDataMixin from "@/mixins/requestDataMixin";
+
+import Navigation from "./components/Navigation";
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: {Navigation},
+  data(){
+    return{
+
+    }
+  },
+  mixins:[requestDataMixin],
+
 }
 </script>
 
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+.toLearn{
+  /*text-overflow: clip;*/
+  /*text-transform: uppercase;*/
+  /*word-break: break-word;*/
+  /*opacity: 0.2;*/
+  /*vertical-align: center;*/
+  /*z-index: -1;*/
+  /*!*100% view hight - takes the max display*!*/
+  /*width: 100vh;*/
+  /*!*aside (aside bar)  tag in HMTL*!*/
+  /*!*fit image in a box *!*/
+  /*object-fit: cover;*/
+
 }
 </style>
+
+
+<!--<router-link :to="{name:'inventory'}">Inventory</router-link>-->
