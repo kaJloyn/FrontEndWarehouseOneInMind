@@ -38,7 +38,6 @@ export default {
     name: "Navigation",
     data(){
         return {
-
         }
     },
     computed:{
@@ -66,25 +65,15 @@ export default {
                 sessionStorage.removeItem('authToken')
                 sessionStorage.removeItem('username')
                 sessionStorage.removeItem('email')
-                this.checkSesionForUserLogedIn()
+                this.$store.commit('updateCurrentUsername', '')
                 this.$router.push({name:'home'})
             }
             catch (error){
                 console.log(error)
             }
         },
-        checkSesionForUserLogedIn(){
-            this.$store.commit('checkIsUserLogedIn', sessionStorage.getItem('email'))
-        },
-        checkCurrentUsername(){
-            this.$store.commit('checkCurrentUsername', sessionStorage.getItem('username'))
-        },
     },
-    created() {
-        this.checkSesionForUserLogedIn()
-        this.checkCurrentUsername()
 
-    }
 }
 
 </script>

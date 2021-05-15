@@ -5,13 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        isUserLogedIn:'',
         currentUsername:'',
         currentRawMaterialPicture:''
     },
     getters:{
        getIsUserLogedIn(state){
-           return state.isUserLogedIn
+           if(state.currentUsername !== ''){
+               return true
+           }
+           return false
        },
        getCurrentUsername(state){
            return state.currentUsername
@@ -22,24 +24,11 @@ export default new Vuex.Store({
        }
     },
     mutations: {
-        checkIsUserLogedIn(state, email){
-            if(email){
-               return  state.isUserLogedIn = true
-            }
-            else{
-               return  state.isUserLogedIn = false
-            }
+
+        updateCurrentUsername(state, username){
+            state.currentUsername = username
         },
 
-        checkCurrentUsername(state, username){
-            if (username){
-                return state.currentUsername = username
-            }
-        },
-
-        updateCurrentRawMaterialPicture(state, picture){
-            return state.currentRawMaterialPicture = picture
-        },
     }
 })
 

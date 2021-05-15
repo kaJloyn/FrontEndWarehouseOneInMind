@@ -68,7 +68,6 @@ name: "Orders",
     await this.getStockOrders()
     await this.getOrdersData()
     await this.getSuppliers()
-    console.log(await this.getRawMatStat())
   }
 }
 </script>

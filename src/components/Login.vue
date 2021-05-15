@@ -44,12 +44,7 @@ export default {
     },
   },
   methods:{
-      checkSesionForUserLogedIn(){
-          this.$store.commit('checkIsUserLogedIn', sessionStorage.getItem('email'))
-      },
-      checkCurrentUsername(){
-          this.$store.commit('checkCurrentUsername', sessionStorage.getItem('username'))
-      },
+
     async loginSubmit(){
         const {formData} = this.$v
         this.$v.$touch()
@@ -64,13 +59,12 @@ export default {
         sessionStorage.setItem('authToken', result.data.token)
         sessionStorage.setItem('username', result.data.username)
         sessionStorage.setItem('email', result.data.email)
-        this.checkSesionForUserLogedIn()
-        this.checkCurrentUsername()
+        this.$store.commit('updateCurrentUsername', sessionStorage.getItem('username'))
         await this.$router.push({name: 'inventory'})
       }
       catch (error){
          if(error.response.status === 400){
-             window.alert('Your cedential are wrong please try again')
+             window.alert('Your credentials are wrong please try again')
              document.getElementById('loginForm').reset()
          }
          else{
