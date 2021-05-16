@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        currentUsername:'',
+        currentUsername: '',
         currentRawMaterialPicture:''
     },
     getters:{
@@ -24,11 +24,10 @@ export default new Vuex.Store({
        }
     },
     mutations: {
-
         updateCurrentUsername(state, username){
             state.currentUsername = username
         },
 
-    }
+    },
 })
 

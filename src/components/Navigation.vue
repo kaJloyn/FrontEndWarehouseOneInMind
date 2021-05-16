@@ -38,6 +38,7 @@ export default {
     name: "Navigation",
     data(){
         return {
+            username: ''
         }
     },
     computed:{
@@ -73,7 +74,10 @@ export default {
             }
         },
     },
-
+    created() {
+        this.checkIfLoggedIn()
+        this.currentUsername()
+    }
 }
 
 </script>
