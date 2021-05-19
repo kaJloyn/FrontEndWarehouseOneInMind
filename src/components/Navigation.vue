@@ -63,9 +63,9 @@ export default {
                         'Authorization': `token ${getUserToken()}`
                     }
                 })
-                sessionStorage.removeItem('authToken')
-                sessionStorage.removeItem('username')
-                sessionStorage.removeItem('email')
+                localStorage.removeItem('authToken')
+                localStorage.removeItem('username')
+                localStorage.removeItem('email')
                 this.$store.commit('updateCurrentUsername', '')
                 this.$router.push({name:'home'})
             }

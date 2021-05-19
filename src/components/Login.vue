@@ -56,10 +56,10 @@ export default {
       }
       try{
         const result = await axios.post(finalUrl, dataObj)
-        sessionStorage.setItem('authToken', result.data.token)
-        sessionStorage.setItem('username', result.data.username)
-        sessionStorage.setItem('email', result.data.email)
-        this.$store.commit('updateCurrentUsername', sessionStorage.getItem('username'))
+          localStorage.setItem('authToken', result.data.token)
+          localStorage.setItem('username', result.data.username)
+          localStorage.setItem('email', result.data.email)
+        this.$store.commit('updateCurrentUsername', localStorage.getItem('username'))
         await this.$router.push({name: 'inventory'})
       }
       catch (error){

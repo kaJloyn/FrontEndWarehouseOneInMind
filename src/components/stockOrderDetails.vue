@@ -80,7 +80,20 @@ name: "stockOrderDetails",
       return 'Няма доставчик'
     },
     async orderStatus(orderId, status){
-      await this. changeOrderStatus(orderId, status)
+     let newRawMatQyantity = 0
+     for (let eachRawMaterial of this.getCurrentStockOrderDetails){
+       let rawMaterialId = eachRawMaterial.raw_material
+       let currentRawMatQuantity = this.rawMaterials.find(rm => rm.id == rawMaterialId).quantity
+       if (status){
+         newRawMatQyantity = currentRawMatQuantity + eachRawMaterial.quantity
+       }
+       else{
+         newRawMatQyantity = currentRawMatQuantity - eachRawMaterial.quantity
+       }
+       await this.updateRawMaterialQauntity(rawMaterialId, newRawMatQyantity)
+     }
+
+      await this.changeOrderStatus(orderId, status)
       let updatedSotckOrder = await this.stockOrderById(this.currentStockOrderId)
       this.$router.replace({ name: 'stockOrderDetails', query: {
           stockOrderId:updatedSotckOrder.id,

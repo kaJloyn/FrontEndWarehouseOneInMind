@@ -18,7 +18,7 @@ const routes = [
         // lazy loading, only when it is required
         component: () => import(/* webpackChunkName: "Inventory" */ '@/components/Inventory.vue'),
         beforeEnter(to, from, next){
-            if(sessionStorage.getItem('authToken')){
+            if(localStorage.getItem('authToken')){
                 next()
             }
             else{

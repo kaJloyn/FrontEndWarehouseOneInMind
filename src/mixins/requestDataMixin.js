@@ -65,10 +65,9 @@ const requestsDataMixin = {
             })
             this.suppliers = result.data
         },
-        async changeOrderStatus(orderId, status){
+        async changeOrderStatus(orderId, status,){
             const prefix = `stockOrders/${orderId}/`
             const finalUrl = baseUrl + prefix
-
             await axios.put(finalUrl, {
                 arrived: status,
             }, {
@@ -77,6 +76,14 @@ const requestsDataMixin = {
                 }
             })
         },
+
+        async updateRawMaterialQauntity(id, newQuantity){
+            const prefix = `rawMaterials/${id}/`
+            const finalUrl = baseUrl + prefix
+            await axios.put(finalUrl, {
+                quantity:newQuantity
+            },{headers: {'Authorization': `token ${getUserToken()}`}})
+        }
 
     }
 }

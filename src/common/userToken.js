@@ -3,7 +3,7 @@
 const tokenKey = 'authToken'
 
 let  getUserToken = () => {
-    let token = sessionStorage.getItem(tokenKey)
+    let token = localStorage.getItem(tokenKey)
     if (token){
         return token
     }
