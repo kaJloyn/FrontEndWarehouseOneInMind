@@ -17,6 +17,9 @@
                     <li @click="logOut" v-show="checkIfLoggedIn" class="wtf">
                         Logout
                     </li>
+                <li>
+                    <router-link :to="{name:'qrcode'}" >QR</router-link>
+                </li>
                 <span class="welcome-msg" v-show="checkIfLoggedIn">
                     <li >
                         Hello {{currentUsername}} !

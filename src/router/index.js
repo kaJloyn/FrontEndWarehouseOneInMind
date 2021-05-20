@@ -5,6 +5,7 @@ import Home from "@/components/Home";
 import ordersRoutes from "@/router/ordersRoutes";
 import Login from "@/components/Login";
 import inventoryRoutes from "./inventoryRoutes";
+import Qrcode from "../components/Qrcode";
 
 
 
@@ -12,6 +13,7 @@ Vue.use(VueRouter)
 
 const routes = [
     {path: '/', component: Home},
+    {path: 'QR', component: Qrcode, name:'qrcode'},
     {
         path: '/inventory',
         name:'inventory',
