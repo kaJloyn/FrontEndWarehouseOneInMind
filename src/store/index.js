@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -11,13 +12,12 @@ export default new Vuex.Store({
     },
     getters:{
        getIsUserLoggedIn(state){
-           return !state.currentUsername;
-
+           return !!state.currentUsername;
        },
        getCurrentUsername(state){
            return state.currentUsername
        },
-       getCurrentRawMAterialPicture(state){
+       getCurrentRawMaterialPicture(state){
            return state.currentRawMaterialPicture
 
        }

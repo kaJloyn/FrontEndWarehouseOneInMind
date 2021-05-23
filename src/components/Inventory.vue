@@ -73,7 +73,6 @@ export default {
       return resultStockOrder.date_created
     },
       onPictureClick(rawMaterialName, rawMaterialPicture){
-        this.$store.commit('updateCurrentRawMaterialPicture', rawMaterialPicture)
         this.$router.push({name:'currentRawMaterialPicture', query:{ name:rawMaterialName, pic:rawMaterialPicture}})
       },
     onSearch(){
