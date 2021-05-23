@@ -12,17 +12,20 @@
                         <router-link :to="{name:'stockOrders'}">Orders</router-link>
                     </li>
                     <li>
-                        <router-link :to="{name:'login'}" v-show="!checkIfLoggedIn">Login</router-link>
+                        <router-link :to="{name:'login'}" v-show="!this.checkIfLoggedIn()">Login</router-link>
                     </li>
-                    <li @click="logOut" v-show="checkIfLoggedIn" class="wtf">
+                    <li @click="logOut" v-show="this.checkIfLoggedIn()" class="wtf">
                         Logout
                     </li>
                 <li>
                     <router-link :to="{name:'qrcode'}" >QR</router-link>
                 </li>
-                <span class="welcome-msg" v-show="checkIfLoggedIn">
+                <li>
+                    <router-link :to="{name:'bill of materials'}" >BOM</router-link>
+                </li>
+                <span class="welcome-msg" v-show="this.checkIfLoggedIn()">
                     <li >
-                        Hello {{currentUsername}} !
+                        Hello {{this.currentUsername()}} !
                     </li>
                 </span>
 
@@ -45,12 +48,7 @@ export default {
         }
     },
     computed:{
-        checkIfLoggedIn(){
-            return this.$store.getters.getIsUserLogedIn
-        },
-        currentUsername(){
-            return this.$store.getters.getCurrentUsername
-        },
+
     },
 
     methods:{
@@ -61,25 +59,30 @@ export default {
             try{
                 window.alert('Are you suer that you want to logout')
                 await axios.get(finalUrl, {
-
                     headers: {
                         'Authorization': `token ${getUserToken()}`
                     }
                 })
-                localStorage.removeItem('authToken')
-                localStorage.removeItem('username')
-                localStorage.removeItem('email')
-                this.$store.commit('updateCurrentUsername', '')
+                sessionStorage.removeItem('authToken')
+                sessionStorage.removeItem('username')
+                sessionStorage.removeItem('email')
+                this.$store.commit('updateCurrentUsername', sessionStorage.getItem('username'))
                 this.$router.push({name:'home'})
             }
             catch (error){
                 console.log(error)
             }
         },
+        checkIfLoggedIn(){
+            return this.$store.getters.getIsUserLoggedIn
+
+        },
+        currentUsername(){
+            return this.$store.getters.getCurrentUsername
+        },
     },
-    created() {
-        this.checkIfLoggedIn()
-        this.currentUsername()
+    mounted() {
+        this.$store.commit('updateCurrentUsername', sessionStorage.getItem('username'))
     }
 }
 

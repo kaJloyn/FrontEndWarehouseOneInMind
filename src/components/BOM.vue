@@ -1,6 +1,5 @@
 <template>
     <div>
-        <p>{{returnAbsoluteRawMaterialSuppliers}}</p>
     </div>
 </template>
 
@@ -10,10 +9,12 @@
     export default {
         name: "BOM",
         mixins:[productionApiMixin],
+
         methods:{
-            async returnAbsoluteRawMaterialSuppliers(){
-                return await this.getAbsoluteRawMaterialSuppliers()
-            }
+        },
+        async created() {
+            console.log(await this.getAbsoluteRawMaterialSuppliers())
+
         }
 
     }

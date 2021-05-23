@@ -9,7 +9,7 @@ const ordersRoutes= [
         name:'stockOrders',
         component: Orders,
         beforeEnter(to, from, next){
-            if(localStorage.getItem('authToken')){
+            if(sessionStorage.getItem('authToken')){
                 next()
             }
             else{
