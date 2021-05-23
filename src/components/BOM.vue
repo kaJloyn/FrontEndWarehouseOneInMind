@@ -9,11 +9,29 @@
     export default {
         name: "BOM",
         mixins:[productionApiMixin],
+        data(){
+            return{
+                absoluteRawMaterialSuppliers:'',
+                billOfMaterialAttribute:'',
+                absoluteRawMaterialsInventory:'',
+                absoluteRawMaterialOrders:'',
+
+
+            }
+        },
 
         methods:{
+            async setAbsoluteRawMaterialSuppliers(){
+                this.absoluteRawMaterialSuppliers = await this.getAbsoluteRawMaterialSuppliers()
+            },
+            async setBillOfMaterialAttribute(){
+                this.billOfMaterialAttribute = await this.getBillOfMaterialAttribute()
+            },
+  
         },
         async created() {
-            console.log(await this.getAbsoluteRawMaterialSuppliers())
+            await this.setAbsoluteRawMaterialSuppliers()
+            await this.setBillOfMaterialAttribute()
 
         }
 
