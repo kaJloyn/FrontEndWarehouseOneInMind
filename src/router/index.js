@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from "@/components/Home";
-import ordersRoutes from "@/router/ordersRoutes";
+import ordersRoutes from "./ordersRoutes";
 import Login from "@/components/Login";
 import inventoryRoutes from "./inventoryRoutes";
 import Qrcode from "../components/Qrcode";
@@ -26,9 +26,7 @@ const routes = [
             else{
                 next('/login')
             }
-
         }
-
     },
 
     {path: '/home', name:'home', component: Home},

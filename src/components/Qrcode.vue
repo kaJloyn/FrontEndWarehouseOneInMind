@@ -1,35 +1,34 @@
 <template>
     <div>
-        <p class="decode-result">Last result: <b>{{ result }}</b></p>
-
-        <qrcode-stream :camera="camera" @decode="onDecode" @init="onInit">
-            <div v-show="cameraForzen" class="validation-layer">
-                <div class="validation-notice" v-if="validating">
-                    Long validation in progress...
-                </div>
-            </div>
-        </qrcode-stream>
+        <div id="reader" width="600px"></div>
     </div>
 </template>
 
 <script>
-import { QrcodeStream } from 'vue-qrcode-reader'
+
 
 
 export default {
     name: "Qrcode",
+    data(){
+        return{}
+    },
     components: {
-        QrcodeStream,
+
     },
     methods:{
-        async onDecode (content) {
-            this.result = content
+        onScanSuccess(qrMessage) {
+    // handle the scanned code as you like, for example:
+    console.log(`QR matched = ${qrMessage}`);
+    },
 
-            this.stopCamera()
-            window.setTimeout(() => {
-                this.startCamera()
-            }, 2000)
-        }
+    onScanFailure(error) {
+    // handle scan failure, usually better to ignore and keep scanning.
+    // for example:
+    console.warn(`QR error = ${error}`);
+    },
+
+
     },
 
 }
