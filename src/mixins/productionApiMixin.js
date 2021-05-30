@@ -4,6 +4,27 @@ import baseUrl from "../common/settings";
 const productionApiMixin = {
 
     methods: {
+        async getAbsoluteRawMaterial() {
+            const preFix = 'absoluteRawMaterial/'
+            const finalUrl = baseUrl + preFix
+            const result = await axios.get(finalUrl, {
+                headers: {
+                    'Authorization': `token ${getUserToken()}`
+                }
+            })
+            return result.data
+        },
+        async getAbsoluteRawMaterialById(id) {
+            const preFix = `absoluteRawMaterial/${id}`
+            const finalUrl = baseUrl + preFix
+            const result = await axios.get(finalUrl, {
+                headers: {
+                    'Authorization': `token ${getUserToken()}`
+                }
+            })
+            return result.data
+        },
+
         async getAbsoluteRawMaterialSuppliers() {
             const preFix = 'absoluteRawMaterialSupplier/'
             const finalUrl = baseUrl + preFix
@@ -48,6 +69,16 @@ const productionApiMixin = {
             const preFix = `billOfMaterialAttribute/${id}`
             const finalUrl = baseUrl + preFix
             const result = await axios.get(finalUrl, {
+                headers: {
+                    'Authorization': `token ${getUserToken()}`
+                }
+            })
+            return result.data
+        },
+        async createBillOfMaterialAttribute(data) {
+            const preFix = `createBillOfMaterialAttribute`
+            const finalUrl = baseUrl + preFix
+            const result = await axios.post(finalUrl, data, {
                 headers: {
                     'Authorization': `token ${getUserToken()}`
                 }
@@ -124,6 +155,7 @@ const productionApiMixin = {
             })
             return result.data
         },
+
     }
 }
 export default productionApiMixin

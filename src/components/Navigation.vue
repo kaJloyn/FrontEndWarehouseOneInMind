@@ -2,26 +2,27 @@
     <div>
         <nav>
             <ul>
-                    <li>
-                        <router-link :to="{name:'home'}">Home</router-link>
-                    </li>
-                    <li>
-                        <router-link :to="{name:'inventory'}">Inventory</router-link>
-                    </li>
-                    <li>
-                        <router-link :to="{name:'stockOrders'}">Orders</router-link>
-                    </li>
-                    <li>
-                        <router-link :to="{name:'login'}" v-show="!this.checkIfLoggedIn()">Login</router-link>
-                    </li>
-                    <li @click="logOut" v-show="this.checkIfLoggedIn()" class="wtf">
-                        Logout
-                    </li>
+                <li>
+                    <router-link :to="{name:'home'}">Home</router-link>
+                </li>
+                <li>
+                    <router-link :to="{name:'inventory'}">Inventory</router-link>
+                </li>
+                <li>
+                    <router-link :to="{name:'stockOrders'}">Orders</router-link>
+                </li>
+                <li>
+                    <router-link :to="{name:'login'}" v-show="!this.checkIfLoggedIn()">Login</router-link>
+                </li>
+                <li @click="logOut" v-show="this.checkIfLoggedIn()" class="wtf">Logout</li>
                 <li>
                     <router-link :to="{name:'qrcode'}" >QR</router-link>
                 </li>
                 <li>
                     <router-link :to="{name:'bill of materials'}" >BOM</router-link>
+                </li>
+                <li>
+                    <router-link :to="{name:'create bom'}" >Create BOM</router-link>
                 </li>
                 <span class="welcome-msg" v-show="this.checkIfLoggedIn()">
                     <li >

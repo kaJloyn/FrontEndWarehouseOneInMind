@@ -12,6 +12,16 @@ import 'element-ui/lib/theme-chalk/index.css';
 import router from "@/router/index";
 import store from "./store"
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserSecret, faInfo } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import VueQrcodeReader from "vue-qrcode-reader";
+
+
+Vue.use(VueQrcodeReader);
+library.add(faUserSecret, faInfo)
+Vue.component('fa-icon', FontAwesomeIcon)
+
 
 
 Vue.use(Vuelidate)
