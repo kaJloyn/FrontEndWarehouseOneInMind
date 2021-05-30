@@ -64,7 +64,7 @@
         methods:{
 
             async onPlaning(){
-               await axios.get('http://1indmind.tk/scm-api/calcualtePlaning/',{
+               await axios.get('http://www.1inmind.tk/scm-api/calcualtePlaning/',{
                    headers: {
                        'Authorization': `token ${getUserToken()}`
                    }
