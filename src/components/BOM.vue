@@ -1,5 +1,6 @@
 <template>
     <div>
+        <button @click="onPlaning"> Run Planiing</button>
         <div class="rawMaterial">
         <div v-for="rawMat in allRawMatWithBOM" :key="allRawMatWithBOM[rawMat]">
                 <section class="rawMatDetails">
@@ -34,7 +35,7 @@
                 </section>
             </div>
         </div>
-    <button @click="onPlaning"> Run Planiing</button>
+
     </div>
 </template>
 
@@ -63,7 +64,7 @@
         methods:{
 
             async onPlaning(){
-               await axios.get('http://127.0.0.1:8000/scm-api/calcualtePlaning/',{
+               await axios.get('http://1indmind.tk/scm-api/calcualtePlaning/',{
                    headers: {
                        'Authorization': `token ${getUserToken()}`
                    }
@@ -132,7 +133,6 @@
             getOneIdOfRawMatForPicture(){
                 let rawMatIdList = this.allRawMatWithBOM.map(raw_mat => raw_mat[0]['id'])
                 return rawMatIdList[0]
-
             }
         },
         async created() {
@@ -158,7 +158,7 @@
     border: solid 3px;
     border-color: mediumseagreen;
     align-items: stretch;
-    margin-top: 3px;
+    margin-top: 5px;
 }
 .rawMatDetails{
     display: flex;
@@ -190,5 +190,8 @@
     margin-top: 12%;
     width: 90px;
     height: 90px;
+}
+button{
+    margin-top: 5px;
 }
 </style>
