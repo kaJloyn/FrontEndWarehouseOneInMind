@@ -7,7 +7,7 @@ import Login from "@/components/Login";
 import inventoryRoutes from "./inventoryRoutes";
 import productionRoutes from "./productionRoutes";
 import Qrcode from "../components/Qrcode";
-import Ssl from "../components/Ssl";
+import QRresult from "../components/QRresult";
 
 
 Vue.use(VueRouter)
@@ -15,7 +15,8 @@ Vue.use(VueRouter)
 const routes = [
     {path: '/', component: Home},
     {path: 'QR', component: Qrcode, name:'qrcode'},
-    { path: 'file', component: Ssl},
+    {path: 'qr-result', component: QRresult, name:'QRresult'},
+
     {
         path: '/inventory',
         name:'inventory',
