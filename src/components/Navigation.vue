@@ -24,6 +24,9 @@
                 <li>
                     <router-link :to="{name:'create bom'}" >Create BOM</router-link>
                 </li>
+                <li>
+                    <router-link :to="{name:'AllQr'}" >All Qr</router-link>
+                </li>
                 <span class="welcome-msg" v-show="this.checkIfLoggedIn()">
                     <li >
                         Hello {{this.currentUsername()}} !

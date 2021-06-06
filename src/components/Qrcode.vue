@@ -1,15 +1,5 @@
 <template>
     <div>
-        <p class="decode-result">Last result: <b>{{ result }}</b></p>
-<!--        <p>-->
-<!--            Track function:-->
-<!--            <select v-model="selected">-->
-<!--                <option v-for="option in options" :key="option.text" :value="option">-->
-<!--                    {{ option.text }}-->
-<!--                </option>-->
-<!--            </select>-->
-<!--        </p>-->
-
         <qrcode-stream :key="_uid" :track="this.paintOutline" @init="logErrors, onInit" @decode="onDecode">
         <div v-show="showScanConfirmation" class="scan-confirmation">
             <img src="../withBase/checkmark.svg" alt="Checkmark" width="128px" />
@@ -21,10 +11,12 @@
 
 <script>
     import { QrcodeStream } from 'vue-qrcode-reader'
+    import requestsDataMixin from "../mixins/requestDataMixin";
 
     export default {
 
         components: { QrcodeStream },
+        mixins:[requestsDataMixin],
 
         data() {
             return{
@@ -33,13 +25,8 @@
                 showScanConfirmation: false,
                 color: 'red'
             }
-
         },
-
         methods: {
-            selected (){
-                return this.options[1]
-            },
             async onInit (promise) {
                 try {
                     await promise
@@ -50,11 +37,12 @@
                 }
             },
             async onDecode(content) {
-                this.result = content
+
                 if (this.result){
                     this.color = 'green'
+                    let current_raw = this.rawMaterials.find(item => item.id == content)
+                    this.result = current_raw
                 }
-                // await this.timeout(500)
                 this.$router.push({name:'QRresult', params:{
                     result: this.result
                     }})
@@ -83,18 +71,13 @@
             logErrors(promise) {
                 promise.catch(console.error)
             },
-            timeout(ms) {
-                return new Promise(resolve => {
-                    window.setTimeout(resolve, ms)
-                })
-            },
             pause () {
                 this.camera = 'off'
             },
-            unpause () {
-                this.camera = 'auto'
-            },
         },
+        async created() {
+            await this.getRawMaterials()
+        }
     }
 </script>
 

@@ -8,7 +8,7 @@ import inventoryRoutes from "./inventoryRoutes";
 import productionRoutes from "./productionRoutes";
 import Qrcode from "../components/Qrcode";
 import QRresult from "../components/QRresult";
-
+import AllQr from  "../components/AllQr"
 
 Vue.use(VueRouter)
 
@@ -16,6 +16,8 @@ const routes = [
     {path: '/', component: Home},
     {path: 'QR', component: Qrcode, name:'qrcode'},
     {path: 'qr-result', component: QRresult, name:'QRresult'},
+    {path: 'all-qr', component: AllQr, name: 'AllQr'},
+
 
     {
         path: '/inventory',

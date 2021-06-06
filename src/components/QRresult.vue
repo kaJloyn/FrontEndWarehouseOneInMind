@@ -6,7 +6,8 @@
 
 <script>
     export default {
-        name: "QRresult"
+        name: "QRresult",
+
     }
 </script>
 
