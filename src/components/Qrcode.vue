@@ -21,7 +21,7 @@
         data() {
             return{
                 camera: 'auto',
-                result: null,
+                result: '',
                 showScanConfirmation: false,
                 color: 'red'
             }
@@ -38,10 +38,10 @@
             },
             async onDecode(content) {
 
-                if (this.result){
+                if (content){
                     this.color = 'green'
-                    // let current_raw = this.rawMaterials.find(item => item.id === content)
-                    this.result = content
+                    let current_raw = this.rawMaterials.find(item => item.id === content)
+                    this.result = current_raw
                 }
                 this.$router.push({name:'QRresult', params:{
                     result: this.result
