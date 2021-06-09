@@ -54,6 +54,7 @@
         height: 50px;
     }
     input{
+        background-color: #545c64;
         width: 500px;
         height: 100px;
     }
