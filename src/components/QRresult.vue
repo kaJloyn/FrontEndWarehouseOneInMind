@@ -14,7 +14,6 @@
                 </div>
             </article>
         </div>
-        <div>{{this.$route.params}}</div>
     </div>
 </template>
 
@@ -44,8 +43,11 @@
         max-width: 500px;
     }
     .picture-rm{
-        width: 100px;
-        height: 80px;
+        width: 300px;
+        height: 300px;
+    }
+    .data{
+        width: 400px;
     }
 
 
