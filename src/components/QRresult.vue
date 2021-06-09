@@ -23,10 +23,10 @@
             }
         },
         created() {
-            // this.pic = this.$route.params['result']['pic']
-            // this.rm = this.$route.params['result']['title']
-            // this.size = this.$route.params['result']['size']
-            // this.color = this.$route.params['result']['color']
+            this.pic = this.$route.params['result']['pic']
+            this.rm = this.$route.params['result']['title']
+            this.size = this.$route.params['result']['size']
+            this.color = this.$route.params['result']['color']
         }
     }
 </script>

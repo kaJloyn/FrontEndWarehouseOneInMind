@@ -41,7 +41,7 @@
                 if (content){
                     this.color = 'green'
                     let current_raw = this.rawMaterials.find(item => item.id === Number(content))
-                    this.result = Number(current_raw)
+                    this.result = current_raw
                 }
                 this.$router.push({name:'QRresult', params:{
                     result: this.result
