@@ -3,9 +3,9 @@
         <div class="scn-result">
             <img class="picture-rm" :src="pic" alt="">
             <article class="data">
-                <div>{{rm}}</div>
-                <div>{{size}}</div>
-                <div>{{color}}</div>
+                <div class="item-data">{{rm}}</div>
+                <div class="item-data">{{size}}</div>
+                <div class="item-data">{{color}}</div>
                 <div>
                     <input type="number">
                 </div>
@@ -47,7 +47,19 @@
         height: 300px;
     }
     .data{
-        width: 400px;
+        width: 500px;
+    }
+    .item-data{
+        width: 500px;
+        height: 50px;
+    }
+    input{
+        width: 500px;
+        height: 100px;
+    }
+    button{
+        width: 500px;
+        height: 100px;
     }
 
 
