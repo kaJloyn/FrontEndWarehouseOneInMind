@@ -43,9 +43,7 @@
                     let current_raw = this.rawMaterials.find(item => item.id === Number(content))
                     this.result = current_raw
                 }
-                this.$router.push({name:'QRresult', params:{
-                    result: this.result
-                    }})
+                this.$router.push({name:'QRresult', params:[this.result]})
                 this.pause()
 
                 // this.unpause()
