@@ -5,7 +5,7 @@
             <article>
                 <span>{{rm}}</span>
                 <span>{{size}}</span>
-                span{{color}}
+                <span>{{color}}</span>
             </article>
         </div>
     </div>
