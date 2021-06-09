@@ -58,6 +58,9 @@
         height: 100px;
     }
     button{
+        font-size: 30px;
+        font-weight: bold;
+        color: mediumseagreen;
         width: 500px;
         height: 100px;
     }
