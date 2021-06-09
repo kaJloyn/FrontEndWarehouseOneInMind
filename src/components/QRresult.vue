@@ -50,18 +50,21 @@
         width: 500px;
     }
     .item-data{
+        font-size: 30px;
         width: 500px;
         height: 50px;
     }
     input{
-        background-color: #545c64;
+        background-color: darkgrey;
         width: 500px;
         height: 100px;
+        font-size: 30px;
     }
     button{
         font-size: 30px;
         font-weight: bold;
         color: mediumseagreen;
+        background-color: darkgrey;
         width: 500px;
         height: 100px;
     }
