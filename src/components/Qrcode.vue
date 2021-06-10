@@ -14,7 +14,7 @@
     import requestsDataMixin from "../mixins/requestDataMixin";
 
     export default {
-
+        name:"qrcode",
         components: { QrcodeStream },
         mixins:[requestsDataMixin],
 
@@ -51,7 +51,6 @@
                 // this.unpause()
             },
             paintOutline(detectedCodes, ctx) {
-                console.log(detectedCodes)
                 let detectedCode = detectedCodes[0]
                 // for (const detectedCode of detectedCodes) {
                     const [firstPoint, ...otherPoints] = detectedCode.cornerPoints
@@ -59,7 +58,6 @@
                     ctx.beginPath();
                     ctx.moveTo(firstPoint.x, firstPoint.y);
                     for (const {x, y} of otherPoints) {
-                        console.log('ti li sa puskash')
                         ctx.lineTo(x, y);
                     }
                     ctx.lineTo(firstPoint.x, firstPoint.y);
