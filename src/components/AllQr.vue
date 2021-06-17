@@ -8,11 +8,11 @@
         <table>
             <thead>
             <tr>
-                <th class="id">ID</th>
-                <th>име</th>
-                <th>снимка</th>
-                <th>код.дост</th>
-                <th>пол</th>
+<!--                <th class="id">ID</th>-->
+                <th class = "name-rm">име</th>
+<!--                <th>снимка</th>-->
+<!--                <th>код.дост</th>-->
+<!--                <th>пол</th>-->
                 <th>размер</th>
                 <th>QR Code</th>
 
@@ -20,11 +20,11 @@
             </thead>
             <tbody>
             <tr v-for="rawMat in rawMaterials" :key="rawMat.id">
-                <td class="id">{{rawMat.id}} </td>
-                <td>{{rawMat.title}}</td>
+<!--                <td class="id">{{rawMat.id}} </td>-->
+                <td class = "name-rm">{{rawMat.title}}</td>
 <!--                <td @click="onPictureClick(rawMat.title, rawMat.pic)"><img :src="rawMat.pic" :alt="rawMat.title"></td>-->
-                <td>{{rawMat.cross_pn}}</td>
-                <td>{{rawMat.sex}}</td>
+<!--                <td>{{rawMat.cross_pn}}</td>-->
+<!--                <td>{{rawMat.sex}}</td>-->
                 <td>{{rawMat.size}}</td>
                 <td>{{rawMat.color}}</td>
                 <td>
@@ -95,11 +95,14 @@
 </script>
 
 <style scoped>
+    .name-rm{
+        width: 200px;
+    }
     table{
         margin-top: 1rem;
     }
     img{
-        width: 250px;
+        width: 100px;
         height: auto;
     }
     img:hover{
@@ -112,7 +115,7 @@
     th{
         font-size: 20px;
         text-transform: uppercase;
-        width: auto;
+        width: 20px;
         text-align: center;
         position: sticky;
         top: 0;

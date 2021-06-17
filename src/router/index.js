@@ -14,9 +14,33 @@ Vue.use(VueRouter)
 
 const routes = [
     {path: '/', component: Home},
-    {path: 'QR', component: Qrcode, name:'qrcode'},
-    {path: 'qr-result', component: QRresult, name:'QRresult'},
-    {path: 'all-qr', component: AllQr, name: 'AllQr'},
+    {path: 'QR', component: Qrcode, name:'qrcode',
+        beforeEnter(to, from, next){
+            if(sessionStorage.getItem('authToken')){
+                next()
+            }
+            else{
+                next('/login')
+            }
+        }},
+    {path: 'qr-result', component: QRresult, name:'QRresult',
+        beforeEnter(to, from, next){
+            if(sessionStorage.getItem('authToken')){
+                next()
+            }
+            else{
+                next('/login')
+            }
+        }},
+    {path: 'all-qr', component: AllQr, name: 'AllQr',
+        beforeEnter(to, from, next){
+            if(sessionStorage.getItem('authToken')){
+                next()
+            }
+            else{
+                next('/login')
+            }
+        }},
 
 
     {
