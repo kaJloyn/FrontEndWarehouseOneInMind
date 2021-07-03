@@ -100,15 +100,15 @@
     .item-data{
         margin-top: 5px;
         padding-top: 5px;
-        font-size: 30px;
-        width: 500px;
-        height: 50px;
+        font-size: 20px;
+        max-width: 250px;
+
     }
     input{
         margin-top: 5px;
         background-color: darkgrey;
-        width: 500px;
-        height: 100px;
+        width: 250px;
+        height: 50px;
         font-size: 30px;
     }
     button{
@@ -116,8 +116,8 @@
         font-size: 30px;
         font-weight: bold;
         color: orangered;
-        width: 500px;
-        height: 100px;
+        width: 250px;
+        height: 50px;
     }
 
 

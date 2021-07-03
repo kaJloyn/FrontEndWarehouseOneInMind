@@ -42,6 +42,7 @@
                 if (content){
                     this.color = 'green'
                     let searched_id = Number(content)
+                    // let searched_id = 1418
 
                     let raw_matrls = await this.getRawMaterials()
                     let finl_prodcs = await this.getFinalProducts()
