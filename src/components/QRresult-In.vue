@@ -10,7 +10,7 @@
                     <input id="quantity" type="number">
                 </div>
                 <div>
-                    <button @click="stockDeduct" > Извади </button>
+                    <button @click="stockDeduct" > Прибави </button>
                 </div>
             </article>
         </div>
@@ -113,7 +113,7 @@
         margin-top: 5px;
         font-size: 30px;
         font-weight: bold;
-        color: orangered;
+        color: forestgreen;
         width: 500px;
         height: 100px;
     }
