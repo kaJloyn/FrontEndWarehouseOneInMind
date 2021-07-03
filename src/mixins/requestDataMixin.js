@@ -21,6 +21,17 @@ const requestsDataMixin = {
             })
             this.rawMaterials = result.data
             this.rawMaterials.sort((a, b) => (a.id - b.id))
+            return  result.data
+        },
+        async getFinalProducts(){
+            const preFix = 'finalProducts/'
+            const finalUrl = baseUrl + preFix
+            const result = await axios.get(finalUrl,{
+                headers: {
+                    'Authorization': `token ${getUserToken()}`
+                }
+            })
+            return  result.data
         },
 
         async getStockOrders(){
@@ -33,6 +44,7 @@ const requestsDataMixin = {
             })
             this.stockOrders = result.data
             this.stockOrders.sort((a, b) => (b.id - a.id))
+            return  result.data
         },
         async getOrdersData(){
             const preFix = 'ordersData/'
@@ -44,6 +56,7 @@ const requestsDataMixin = {
             })
             this.ordersData = result.data
             this.ordersData.sort((a, b) => (a.id - b.id))
+            return  result.data
         },
         async stockOrderById(orderId){
             const preFix = `stockOrders/${orderId}/`
@@ -64,6 +77,7 @@ const requestsDataMixin = {
                 }
             })
             this.suppliers = result.data
+            return  result.data
         },
         async changeOrderStatus(orderId, status,){
             const prefix = `stockOrders/${orderId}/`
@@ -79,6 +93,13 @@ const requestsDataMixin = {
 
         async updateRawMaterialQauntity(id, newQuantity){
             const prefix = `rawMaterials/${id}/`
+            const finalUrl = baseUrl + prefix
+            await axios.put(finalUrl, {
+                quantity:newQuantity
+            },{headers: {'Authorization': `token ${getUserToken()}`}})
+        },
+        async updateFinalProductQauntity(id, newQuantity){
+            const prefix = `finalProducts/${id}/`
             const finalUrl = baseUrl + prefix
             await axios.put(finalUrl, {
                 quantity:newQuantity

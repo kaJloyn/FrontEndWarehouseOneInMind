@@ -6,15 +6,17 @@ import ordersRoutes from "./ordersRoutes";
 import Login from "@/components/Login";
 import inventoryRoutes from "./inventoryRoutes";
 import productionRoutes from "./productionRoutes";
-import Qrcode from "../components/Qrcode";
-import QRresult from "../components/QRresult";
+import Qrcode_Out from "../components/Qrcode_Out";
+import Qrcode_In from "../components/Qrcode_In"
+import QRresult_Out from "../components/QRresult_Out"
+import QRresult_In from  "../components/QRresult-In"
 import AllQr from  "../components/AllQr"
 
 Vue.use(VueRouter)
 
 const routes = [
     {path: '/', component: Home},
-    {path: 'QR', component: Qrcode, name:'qrcode',
+    {path: 'QR-OUT', component: Qrcode_Out, name:'qrcode_out',
         beforeEnter(to, from, next){
             if(sessionStorage.getItem('authToken')){
                 next()
@@ -22,8 +24,10 @@ const routes = [
             else{
                 next('/login')
             }
-        }},
-    {path: 'qr-result', component: QRresult, name:'QRresult',
+        }
+    },
+
+    {path: 'QR-IN', component: Qrcode_In, name:'qrcode-in',
         beforeEnter(to, from, next){
             if(sessionStorage.getItem('authToken')){
                 next()
@@ -31,7 +35,28 @@ const routes = [
             else{
                 next('/login')
             }
-        }},
+        }
+    },
+    {path: 'qr-result-out', component: QRresult_Out, name:'QRresult_Out',
+        beforeEnter(to, from, next){
+            if(sessionStorage.getItem('authToken')){
+                next()
+            }
+            else{
+                next('/login')
+            }
+        }
+    },
+    {path: 'qr-result-in', component: QRresult_In, name:'QRresult_In',
+        beforeEnter(to, from, next){
+            if(sessionStorage.getItem('authToken')){
+                next()
+            }
+            else{
+                next('/login')
+            }
+        }
+    },
     {path: 'all-qr', component: AllQr, name: 'AllQr',
         beforeEnter(to, from, next){
             if(sessionStorage.getItem('authToken')){

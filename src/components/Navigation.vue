@@ -1,42 +1,47 @@
 <template>
     <div>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <nav>
-            <ul>
+            <ul id="all-links">
                 <li>
-                    <router-link :to="{name:'home'}">Home</router-link>
+                    <router-link class="link-r" :to="{name:'home'}">Home</router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'inventory'}">Inventory</router-link>
+                    <router-link :key="$route.path" class="link-r" :to="{name:'qrcode_out'}" >QR -</router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'stockOrders'}">Orders</router-link>
+                    <router-link :key="$route.path" class="link-r" :to="{name:'qrcode-in'}" >QR +</router-link>
+                <li>
+                <li>
+                    <router-link class="link-r" :to="{name:'inventory'}">Inventory</router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'login'}" v-show="!this.checkIfLoggedIn()">Login</router-link>
-                </li>
-                <li @click="logOut" v-show="this.checkIfLoggedIn()" class="wtf">Logout</li>
-                <li>
-                    <router-link :to="{name:'qrcode'}" >QR</router-link>
+                    <router-link class="link-r" :to="{name:'stockOrders'}">Orders</router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'bill of materials'}" >BOM</router-link>
+                    <router-link class="link-r" :to="{name:'login'}" v-show="!this.checkIfLoggedIn()">Login</router-link>
+                </li>
+                <li @click="logOut" class="link-r" v-show="this.checkIfLoggedIn()">Logout</li>
+
+
+                    <router-link class="link-r" :to="{name:'bill of materials'}" >BOM</router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'create bom'}" >Create BOM</router-link>
+                    <router-link class="link-r" :to="{name:'create bom'}" >Create BOM</router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'AllQr'}" >All Qr</router-link>
+                    <router-link class="link-r" :to="{name:'AllQr'}" >All Qr</router-link>
                 </li>
                 <span class="welcome-msg" v-show="this.checkIfLoggedIn()">
-                    <li >
-                        Hello {{this.currentUsername()}} !
+                    <li class="link-r" >
+                          Hello {{this.currentUsername()}} !
                     </li>
                 </span>
-
-
             </ul>
         </nav>
     </div>
+
+
 </template>
 
 <script>
@@ -48,7 +53,11 @@ export default {
     name: "Navigation",
     data(){
         return {
-            username: ''
+            username: '',
+            mobileView:false,
+            showNav: false,
+            screenWith: window.screen.width
+
         }
     },
     computed:{
@@ -84,10 +93,32 @@ export default {
         currentUsername(){
             return this.$store.getters.getCurrentUsername
         },
+        hamburger() {
+            let x = document.getElementById("all-links");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+                }
+            },
+        getScreenWith(){
+            window.addEventListener('resize', () => {
+                this.screenWith = window.screen.width
+            })
+        }
+    },
+
+
+    created() {
+
+
     },
     mounted() {
         this.$store.commit('updateCurrentUsername', sessionStorage.getItem('username'))
+        this.getScreenWith()
+
     }
+
 }
 
 </script>
@@ -119,6 +150,7 @@ export default {
     }
     a{
         color: #fff;
+        padding: 5px;
     }
     .welcome-msg{;
         flex-basis: 20%;
@@ -128,7 +160,25 @@ export default {
         color: mediumseagreen;
     }
 
-
+@media screen and (max-width: 1024px) {
+    nav{
+        display: flex;
+        flex-flow: column;
+        flex-wrap: wrap;
+        min-width: 100%;
+        min-height: 20%;
+        overflow: hidden;
+        background-color: #333;
+        position: relative;
+        align-content: flex-start;
+    }
+    .link-r{
+        color: white;
+        text-decoration: none;
+        font-size: 9px;
+        display: flex;
+    }
+}
 
 
 

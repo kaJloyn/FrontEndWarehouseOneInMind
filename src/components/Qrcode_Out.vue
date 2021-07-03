@@ -14,7 +14,7 @@
     import requestsDataMixin from "../mixins/requestDataMixin";
 
     export default {
-        name:"qrcode",
+        name:"qrcode_out",
         components: { QrcodeStream },
         mixins:[requestsDataMixin],
 
@@ -24,6 +24,7 @@
                 result: '',
                 showScanConfirmation: false,
                 color: 'red'
+
             }
         },
         methods: {
@@ -40,10 +41,30 @@
 
                 if (content){
                     this.color = 'green'
-                    let current_raw = this.rawMaterials.find(item => item.id === Number(content))
-                    this.result = current_raw
+                    let searched_id = Number(content)
+
+                    let current_raw = await this.getRawMaterials(item => item.id === searched_id)
+                    let current_final_product = this.getFinalProducts().find(item => item.id === searched_id)
+                    if( current_raw && !current_final_product){
+                        this.result = current_raw
+                    }
+                    else if(current_final_product && !current_raw){
+                        this.result = current_final_product
+                    }
+                    else if (!current_raw && !current_final_product){
+                        window.alert('Този QR не е от полуфабрикати или крайни изделия')
+                    }
+                    else if(current_final_product && current_raw){
+                        if (current_final_product.raw_material === searched_id){
+                            this.result = current_raw
+                        }
+                        else{
+                            window.alert('ГРЕШКА: еднакви id на полуфаб. и крайни. ОБАДИ СЕ НА КАЛОЯН')
+                        }
+                    }
+
                 }
-                this.$router.push({name:'QRresult', params:{
+                this.$router.push({name:'QRresult_Out', params:{
                     result: this.result
                     }})
                 this.pause()
@@ -74,7 +95,13 @@
             },
         },
         async created() {
+
+            // console.log( await this.getFinalProducts())
             await this.getRawMaterials()
+
+        },
+        mounted() {
+            console.log(this.$router.currentRoute, 'router')
         }
     }
 </script>

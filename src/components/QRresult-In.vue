@@ -22,7 +22,7 @@
     import requestsDataMixin from "../mixins/requestDataMixin";
 
     export default {
-        name:"QRresult",
+        name:"QRresult-In",
         mixins:[requestsDataMixin],
         data(){
             return {
@@ -69,6 +69,8 @@
         display: flex;
         flex-direction: column;
         max-width: 500px;
+        background-color: forestgreen;
+
     }
     .picture-rm{
         width: 300px;
