@@ -43,7 +43,7 @@
 
     import requestDataMixin from "@/mixins/requestDataMixin";
     export default {
-        name: "AllQr",
+        name: "All_QR_Raw_Mat",
         mixins:[requestDataMixin],
         methods:{
             findOrderedQuantityByRawMatId(id){

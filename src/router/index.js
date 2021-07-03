@@ -10,7 +10,7 @@ import Qrcode_Out from "../components/Qrcode_Out";
 import Qrcode_In from "../components/Qrcode_In"
 import QRresult_Out from "../components/QRresult_Out"
 import QRresult_In from  "../components/QRresult-In"
-import AllQr from  "../components/AllQr"
+import All_QR_Raw_Mat from "../components/All_QR_Raw_Mat"
 
 Vue.use(VueRouter)
 
@@ -57,7 +57,7 @@ const routes = [
             }
         }
     },
-    {path: 'all-qr', component: AllQr, name: 'AllQr',
+    {path: 'all-qr_raw_mat', component: All_QR_Raw_Mat, name: 'All_QR_Raw_Mat',
         beforeEnter(to, from, next){
             if(sessionStorage.getItem('authToken')){
                 next()

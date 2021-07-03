@@ -13,24 +13,24 @@
                     <router-link :key="$route.path" class="link-r" :to="{name:'qrcode-in'}" >QR +</router-link>
                 <li>
                 <li>
-                    <router-link class="link-r" :to="{name:'inventory'}">Inventory</router-link>
+                    <router-link class="link-r" :to="{name:'inventory'}">Нал. Полу-Фаб.</router-link>
                 </li>
                 <li>
-                    <router-link class="link-r" :to="{name:'stockOrders'}">Orders</router-link>
+                    <router-link class="link-r" :to="{name:'stockOrders'}">Пор.Дост.</router-link>
                 </li>
                 <li>
-                    <router-link class="link-r" :to="{name:'login'}" v-show="!this.checkIfLoggedIn()">Login</router-link>
+                    <router-link class="link-r" :to="{name:'login'}" v-show="!this.checkIfLoggedIn()">Вход</router-link>
                 </li>
-                <li @click="logOut" class="link-r" v-show="this.checkIfLoggedIn()">Logout</li>
+                <li @click="logOut" class="link-r" v-show="this.checkIfLoggedIn()">Изход</li>
 
-
+                <li>
                     <router-link class="link-r" :to="{name:'bill of materials'}" >BOM</router-link>
                 </li>
                 <li>
                     <router-link class="link-r" :to="{name:'create bom'}" >Create BOM</router-link>
                 </li>
                 <li>
-                    <router-link class="link-r" :to="{name:'AllQr'}" >All Qr</router-link>
+                    <router-link class="link-r" :to="{name:'All_QR_Raw_Mat'}" >QR Полу-Фаб.</router-link>
                 </li>
                 <span class="welcome-msg" v-show="this.checkIfLoggedIn()">
                     <li class="link-r" >
@@ -139,6 +139,7 @@ export default {
         display: flex;
         flex-flow: row;
         justify-content: flex-start;
+        align-items: baseline;
     }
     li{
         display: flex;
