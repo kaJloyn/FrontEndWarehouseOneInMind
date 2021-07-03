@@ -40,13 +40,30 @@
                 this.scanned_qty = document.getElementById('quantity')
                 this.rm_id = Number(this.$route.params['result']['id'])
                 this.rm_qty = Number(this.$route.params['result']['quantity'])
-                let final_qty = this.rm_qty - Number(this.scanned_qty.value)
+                let final_qty = this.rm_qty + Number(this.scanned_qty.value)
                 if(final_qty < 0 ){
                     confirm(`Вадите по голямо количество ${this.scanned_qty.value} от колкото имате, ще останете с ${final_qty}. Искате да продължите ?`)
                 }
                 else {
                     confirm(`Вадите количество ${this.scanned_qty.value}`)
-                    await this.updateRawMaterialQauntity(this.rm_id, final_qty)
+                    let raw_matrls = await this.getRawMaterials()
+                    let finl_prodcs = await this.getFinalProducts()
+
+
+                    let scanned_raw_mat = raw_matrls.find(item => item.id ===this.scanned_id && item.title === this.title)
+                    let scanned_final_product = finl_prodcs.find(item => item.id ===this.scanned_id && item.title === this.title)
+                    if (scanned_raw_mat && !scanned_final_product){
+                        await this.updateRawMaterialQauntity(this.scanned_id, final_qty)
+                    }
+                    else if(scanned_final_product && !scanned_raw_mat){
+                        await this.updateFinalProductQauntity(this.scanned_id, final_qty)
+
+                    }
+                    else{
+                        window.alert('Не намира обект които да овнови с ново количество')
+                    }
+
+
                     setTimeout(this.$router.push({name:'qrcode'}), 3000)
 
 
