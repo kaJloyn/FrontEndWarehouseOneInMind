@@ -75,7 +75,7 @@
         created() {
 
             this.pic = this.$route.params['result']['pic']
-            this.rm = this.$route.params['result']['title'] && this.$route.params['result']['name']
+            this.rm = this.$route.params['result']['title'] || this.$route.params['result']['name']
             this.size = this.$route.params['result']['size']
             this.color = this.$route.params['result']['color']
             this.title - this.$route.params['result']['title']
@@ -98,6 +98,7 @@
         width: 500px;
     }
     .item-data{
+        margin-top: 5px;
         padding-top: 5px;
         font-size: 30px;
         width: 500px;

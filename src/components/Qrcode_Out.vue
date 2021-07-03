@@ -56,6 +56,7 @@
                     }
                     else if (!current_raw && !current_final_product){
                         window.alert('Този QR не е от полуфабрикати или крайни изделия')
+                        this.$router.push({name:'home'})
                     }
                     else if(current_final_product && current_raw){
                         if (current_final_product.raw_material === searched_id){
@@ -63,6 +64,7 @@
                         }
                         else{
                             window.alert('ГРЕШКА: еднакви id на полуфаб. и крайни. ОБАДИ СЕ НА КАЛОЯН')
+                            this.$router.push({name:'home'})
                         }
                     }
 
@@ -104,7 +106,6 @@
 
         },
         mounted() {
-            console.log(this.$router.currentRoute, 'router')
         }
     }
 </script>

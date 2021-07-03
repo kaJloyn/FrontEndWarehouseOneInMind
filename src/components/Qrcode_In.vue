@@ -42,6 +42,7 @@
                     this.color = 'green'
                     let searched_id = Number(content)
 
+
                     let raw_matrls = await this.getRawMaterials()
                     let finl_prodcs = await this.getFinalProducts()
 
@@ -55,6 +56,7 @@
                     }
                     else if (!current_raw && !current_final_product){
                         window.alert('Този QR не е от полуфабрикати или крайни изделия')
+                        this.$router.push({name:'home'})
                     }
                     else if(current_final_product && current_raw){
                         if (current_final_product.raw_material === searched_id){
@@ -62,6 +64,7 @@
                         }
                         else{
                             window.alert('ГРЕШКА: еднакви id на полуфаб. и крайни. ОБАДИ СЕ НА КАЛОЯН')
+                            this.$router.push({name:'home'})
                         }
                     }
 
@@ -97,7 +100,9 @@
             },
         },
         async created() {
+            // console.log(await this.getFinalProducts(), 'final products')
             await this.getRawMaterials()
+
         }
     }
 </script>

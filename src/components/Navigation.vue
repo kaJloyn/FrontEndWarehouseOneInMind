@@ -176,7 +176,7 @@ export default {
     .link-r{
         color: white;
         text-decoration: none;
-        font-size: 9px;
+        font-size: 12px;
         display: flex;
     }
 }
