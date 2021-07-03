@@ -40,8 +40,8 @@
 
                 if (content){
                     this.color = 'green'
-                    // let searched_id = Number(content)
-                    let searched_id = 1413
+                    let searched_id = Number(content)
+                    // let searched_id = 1413
 
 
                     let raw_matrls = await this.getRawMaterials()
