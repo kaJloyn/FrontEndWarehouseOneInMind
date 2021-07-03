@@ -47,8 +47,12 @@
                 }
                 else {
                     confirm(`Вадите количество ${this.scanned_qty.value}`)
-                    let scanned_raw_mat = this.rawMaterials.find(item => item.id ===this.scanned_id && item.title === this.title)
-                    let scanned_final_product = this.getFinalProducts().find(item => item.id ===this.scanned_id && item.title === this.title)
+                    let raw_matrls = await this.getRawMaterials()
+                    let finl_prodcs = await this.getFinalProducts()
+
+
+                    let scanned_raw_mat = raw_matrls.find(item => item.id ===this.scanned_id && item.title === this.title)
+                    let scanned_final_product = finl_prodcs.find(item => item.id ===this.scanned_id && item.title === this.title)
                     if (scanned_raw_mat && !scanned_final_product){
                         await this.updateRawMaterialQauntity(this.scanned_id, final_qty)
                     }

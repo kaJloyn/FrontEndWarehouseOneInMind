@@ -43,8 +43,11 @@
                     this.color = 'green'
                     let searched_id = Number(content)
 
-                    let current_raw = await this.getRawMaterials(item => item.id === searched_id)
-                    let current_final_product = this.getFinalProducts().find(item => item.id === searched_id)
+                    let raw_matrls = await this.getRawMaterials()
+                    let finl_prodcs = await this.getFinalProducts()
+
+                    let current_raw = raw_matrls.find(item => item.id === searched_id)
+                    let current_final_product = finl_prodcs.find(item => item.id === searched_id)
                     if( current_raw && !current_final_product){
                         this.result = current_raw
                     }
