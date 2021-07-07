@@ -7,36 +7,50 @@
                     <router-link class="link-r" :to="{name:'home'}">Home</router-link>
                 </li>
                 <li>
-                    <router-link :key="$route.path" class="link-r" :to="{name:'qrcode_out'}" >QR -</router-link>
-                </li>
-                <li>
-                    <router-link :key="$route.path" class="link-r" :to="{name:'qrcode-in'}" >QR +</router-link>
-                <li>
-                <li>
-                    <router-link class="link-r" :to="{name:'inventory'}">Нал. Полу-Фаб.</router-link>
-                </li>
-                <li>
-                    <router-link class="link-r" :to="{name:'stockOrders'}">Пор.Дост.</router-link>
-                </li>
-                <li>
                     <router-link class="link-r" :to="{name:'login'}" v-show="!this.checkIfLoggedIn()">Вход</router-link>
                 </li>
-                <li @click="logOut" class="link-r" v-show="this.checkIfLoggedIn()">Изход</li>
+                <li v-show="this.checkIfLoggedIn()" >
+                    <router-link :key="$route.path" class="link-r" :to="{name:'qrcode_out'}"   >QR -</router-link>
+                </li>
+                <li v-show="this.checkIfLoggedIn()">
+                    <router-link :key="$route.path" class="link-r" :to="{name:'qrcode-in'}" >QR +</router-link>
+                <li>
+                <li v-show="this.checkIfLoggedIn()">
+                    <router-link class="link-r" :to="{name:'inventory'}">Нал. Полу-Фаб.</router-link>
+                </li>
+                <li v-show="this.checkIfLoggedIn()">
+                    <router-link class="link-r" :to="{name:'Inventory_Final_Prd'}">Нал. Кр. Изделия</router-link>
+                </li>
+                <li v-show="this.checkIfLoggedIn()">
+                    <router-link class="link-r" :to="{name:'stockOrders'}">Пор.Дост.</router-link>
+                </li>
 
-                <li>
-                    <router-link class="link-r" :to="{name:'bill of materials'}" >BOM</router-link>
-                </li>
-                <li>
-                    <router-link class="link-r" :to="{name:'create bom'}" >Create BOM</router-link>
-                </li>
-                <li>
+
+<!--                <li v-show="this.checkIfLoggedIn()">-->
+<!--                    <router-link class="link-r" :to="{name:'bill of materials'}" >BOM</router-link>-->
+<!--                </li>-->
+<!--                <li v-show="this.checkIfLoggedIn()">-->
+<!--                    <router-link class="link-r" :to="{name:'create bom'}" >Create BOM</router-link>-->
+<!--                </li>-->
+
+                <li v-show="this.checkIfLoggedIn()">
                     <router-link class="link-r" :to="{name:'All_QR_Raw_Mat'}" >QR Полу-Фаб.</router-link>
+                </li>
+                <li v-show="this.checkIfLoggedIn()">
+                    <router-link class="link-r" :to="{name:'All_QR_Final_Prod'}" >QR Kр.Изделия</router-link>
+                </li>
+                <li v-show="this.checkIfLoggedIn()">
+                    <router-link class="link-r" :to="{name:'MRP'}">MRP</router-link>
                 </li>
                 <span class="welcome-msg" v-show="this.checkIfLoggedIn()">
                     <li class="link-r" >
                           Hello {{this.currentUsername()}} !
                     </li>
                 </span>
+                <li>
+                    <a @click="logOut" class="link-r" v-show="this.checkIfLoggedIn()"> Изход</a>
+                </li>
+
             </ul>
         </nav>
     </div>
@@ -144,9 +158,10 @@ export default {
     li{
         display: flex;
         color: #fff;
-        padding-left: 1%;
-        font-size: 20px;
+        padding-left: 1px;
+        font-size: 15px;
         cursor: pointer;
+        border-left: solid 1px;
 
     }
     a{

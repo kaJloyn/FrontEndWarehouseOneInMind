@@ -10,36 +10,22 @@
     <tr>
       <th class="id">ID</th>
       <th>име</th>
-      <th>снимка</th>
-      <th>код.дост</th>
-      <th>пол</th>
       <th>размер</th>
       <th>цвят</th>
-      <th>дата последна ревизия</th>
-      <th>наличснот на ревизия</th>
-      <th>продажби от последна ревизия</th>
-      <th>прогнозно количество</th>
-      <th>поръчки</th>
+      <th>наличснот</th>
+
     </tr>
     </thead>
     <tbody>
-    <tr v-for="rawMat in rawMaterials" :key="rawMat.id">
-      <td class="id">{{rawMat.id}} </td>
-      <td>{{rawMat.title}}</td>
-      <td @click="onPictureClick(rawMat.title, rawMat.pic)"><img :src="rawMat.pic" :alt="rawMat.title"></td>
-      <td>{{rawMat.cross_pn}}</td>
-      <td>{{rawMat.sex}}</td>
-      <td>{{rawMat.size}}</td>
-      <td>{{rawMat.color}}</td>
-      <td>{{rawMat.date_created}}</td>
-      <td>{{rawMat.quantity}}</td>
-      <td>{{rawMat.sales_so_far}}</td>
-      <td  style="color: red"> {{rawMat.quantity - rawMat.sales_so_far}}</td>
-      <td>
-        <ul v-for="order in findOrderedQuantityByRawMatId(rawMat.id)" :key="order.id">
-          {{order.quantity}} --- {{getOrderDate(order.order_number)}}
-        </ul>
-      </td>
+    <tr v-for="final_prd in final_products" :key="final_prd.id">
+      <td class="id">{{final_prd.id}} </td>
+      <td>{{final_prd.name}}</td>
+      <td @click="onPictureClick(final_prd.name, final_prd.pic)"><img :src="final_prd.pic" :alt="final_prd.name"></td>
+
+      <td>{{final_prd.size}}</td>
+      <td>{{final_prd.color}}</td>
+      <td>{{final_prd.quantity}}</td>
+
     </tr>
     </tbody>
   </table>
@@ -52,26 +38,14 @@
 
 import requestDataMixin from "@/mixins/requestDataMixin";
 export default {
-  name: "Inventory",
+  name: "Inventory_Final_Prd",
   mixins:[requestDataMixin],
+  data(){
+    return {
+      final_products:[],
+    }
+  },
   methods:{
-    findOrderedQuantityByRawMatId(id){
-      let activeStockOrders = this.stockOrders.filter(order => order.arrived === false)
-      let ordersArray = []
-      for (let order of activeStockOrders){
-        let currentOrderDataObj = this.ordersData.filter(orderData => orderData.order_number === order.id).
-        filter(order => order.raw_material === id)
-        if (currentOrderDataObj.length > 0){
-          ordersArray.push(currentOrderDataObj[0])
-        }
-      }
-      return ordersArray
-    },
-
-    getOrderDate(orderNumber){
-      let resultStockOrder = this.stockOrders.find(order => order.id === orderNumber)
-      return resultStockOrder.date_created
-    },
       onPictureClick(rawMaterialName, rawMaterialPicture){
         this.$router.push({name:'picture', query:{ name:rawMaterialName, pic:rawMaterialPicture}})
       },
@@ -96,9 +70,8 @@ export default {
   },
 
   async created() {
-    await this.getRawMaterials()
-    await this.getStockOrders()
-    await this.getOrdersData()
+    this.final_products = await this.getFinalProducts()
+
   },
 }
 </script>

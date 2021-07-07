@@ -11,6 +11,9 @@ import Qrcode_In from "../components/Qrcode_In"
 import QRresult_Out from "../components/QRresult_Out"
 import QRresult_In from  "../components/QRresult-In"
 import All_QR_Raw_Mat from "../components/All_QR_Raw_Mat"
+import All_QR_Final_Prod from "../components/All_QR_Final_Prod";
+import Inventory_Final_Prd from "../components/Inventory_Final_Prd";
+import MRP from "../components/MRP";
 
 Vue.use(VueRouter)
 
@@ -65,11 +68,22 @@ const routes = [
             else{
                 next('/login')
             }
-        }},
+        }
+    },
+
+    {path: 'all-qr_final_prod', component: All_QR_Final_Prod, name: 'All_QR_Final_Prod',
+        beforeEnter(to, from, next){
+            if(sessionStorage.getItem('authToken')){
+                next()
+            }
+            else{
+                next('/login')
+            }
+        }
+    },
 
 
-    {
-        path: '/inventory',
+    {path: '/inventory',
         name:'inventory',
         // lazy loading, only when it is required
         component: () => import(/* webpackChunkName: "Inventory" */ '@/components/Inventory.vue'),
@@ -82,6 +96,30 @@ const routes = [
             }
         }
     },
+    {path: 'inventory-final-products', component: Inventory_Final_Prd, name: 'Inventory_Final_Prd',
+        beforeEnter(to, from, next){
+            if(sessionStorage.getItem('authToken')){
+                next()
+            }
+            else{
+                next('/login')
+            }
+        },
+
+    },
+    {path: 'MRP', component: MRP, name: 'MRP',
+        beforeEnter(to, from, next){
+            if(sessionStorage.getItem('authToken')){
+                next()
+            }
+            else{
+                next('/login')
+            }
+        }
+    },
+
+
+
 
     {path: '/home', name:'home', component: Home},
     ...ordersRoutes,

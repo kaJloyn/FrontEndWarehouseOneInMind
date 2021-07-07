@@ -60,7 +60,7 @@ export default {
           sessionStorage.setItem('username', result.data.username)
           sessionStorage.setItem('email', result.data.email)
         this.$store.commit('updateCurrentUsername', sessionStorage.getItem('username'))
-        await this.$router.push({name: 'inventory'})
+        await this.$router.push({name: 'home'})
       }
       catch (error){
          if(error.response.status === 400){

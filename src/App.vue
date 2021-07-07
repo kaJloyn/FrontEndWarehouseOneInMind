@@ -2,8 +2,6 @@
   <div id="app">
     <Navigation></Navigation>
     <router-view/>
-    <!--    <button @click="checkSesionForUserLogedIn"> wtf </button>-->
-    <!--    <p>{{check}} !!!</p>-->
     <span class="toLearn"></span>
   </div>
 

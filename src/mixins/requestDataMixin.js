@@ -11,6 +11,16 @@ const requestsDataMixin = {
         }
     },
     methods:{
+        async getB2C_Orders(){
+            const preFix = 'b2c-orders/'
+            const finalUrl = baseUrl + preFix
+            const result = await axios.get(finalUrl,{
+                headers: {
+                    'Authorization': `token ${getUserToken()}`
+                }
+            })
+            return  result.data
+        },
         async getRawMaterials(){
             const preFix = 'rawMaterials/'
             const finalUrl = baseUrl + preFix

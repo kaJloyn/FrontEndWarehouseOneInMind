@@ -14,13 +14,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="rawMat in raw_mats" :key="rawMat.id">
-                <td class = "name-rm">{{rawMat.title}}</td>
-                <td>{{rawMat.size}}</td>
-                <td>{{rawMat.color}}</td>
+            <tr v-for="final_prd in final_products" :key="final_prd.id">
+                <td class = "name-rm">{{final_prd.name}}</td>
+                <td>{{final_prd.size}}</td>
+                <td>{{final_prd.color}}</td>
                 <td>
-                    <img :src="rawMat.qr_code" alt="" @click="onPictureClick(
-                        rawMat.title, rawMat.qr_code, rawMat.size, rawMat.color
+                    <img :src="final_prd.qr_code" alt="" @click="onPictureClick(
+                        final_prd.name, final_prd.qr_code, final_prd.size, final_prd.color
                         )">
                 </td>
 
@@ -40,7 +40,7 @@
         mixins:[requestDataMixin],
         data(){
             return{
-                raw_mats:[],
+                final_products:[],
             }
         },
 
@@ -70,7 +70,7 @@
         },
 
         async created() {
-            this.raw_mats = await this.getRawMaterials()
+            this.final_products = await this.getFinalProducts()
         },
     }
 </script>
