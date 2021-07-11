@@ -1,188 +1,193 @@
 <template>
     <div >
+
         <div v-if="checkCronStatus">
             <p>
                 Поръчките се обновяват моля да опитате след 3 минути
             </p>
         </div>
         <div v-else>
-            <table>
-                <thead>
-                <tr>
-                    <th> Статус</th>
-                    <th class = "name-rm">Поръчка</th>
-                    <th>Фабрикат</th>
-                    <th>Краен</th>
-                    <th>Краен Бр.</th>
-                    <th>Размер</th>
-                    <th>Цвят</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="(rm_and_order, orderNum) in mrp_processing_ord" :key="orderNum">
-                    <td>ОБРАБОТКА</td>
-                    <td>{{orderNum}}</td>
-                    <td>
-                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
-                            <div>
-                                {{each_rm.title_translation}}
-                            </div>
+            <div class="loader" v-if="checkSpnner"></div>
+            <div v-else>
+                <table>
+                    <thead>
+                    <tr>
+                        <th> Статус</th>
+                        <th class = "name-rm">Поръчка</th>
+                        <th>Фабрикат</th>
+                        <th>Краен</th>
+                        <th>Краен Бр.</th>
+                        <th>Размер</th>
+                        <th>Цвят</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(rm_and_order, orderNum) in mrp_processing_ord" :key="orderNum">
+                        <td>ОБРАБОТКА</td>
+                        <td>{{orderNum}}</td>
+                        <td>
+                            <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                                <div>
+                                    {{each_rm.title_translation}}
+                                </div>
 
-                        </div>
-                    </td>
-                    <td>
-                        <div v-for="(order, index) in rm_and_order[1]" :key="index">
-                            <div>
-                                {{order.name}}-{{order.size}}
                             </div>
+                        </td>
+                        <td>
+                            <div v-for="(order, index) in rm_and_order[1]" :key="index">
+                                <div>
+                                    {{order.name}}-{{order.size}}
+                                </div>
 
-                        </div>
-                    </td>
-                    <td>
-                        <div v-for="(fin_qty, index) in rm_and_order[2]" :key="index">
-                            <div>
-                                {{fin_qty}}
                             </div>
+                        </td>
+                        <td>
+                            <div v-for="(fin_qty, index) in rm_and_order[2]" :key="index">
+                                <div>
+                                    {{fin_qty}}
+                                </div>
 
-                        </div>
-                    </td>
-                    <td>
-                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
-                            <div>
-                                {{each_rm.size}}
                             </div>
+                        </td>
+                        <td>
+                            <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                                <div>
+                                    {{each_rm.size}}
+                                </div>
 
-                        </div>
-                    </td>
-                    <td>
-                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
-                            <div>
-                                {{each_rm.color}}
                             </div>
+                        </td>
+                        <td>
+                            <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                                <div>
+                                    {{each_rm.color}}
+                                </div>
 
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <table>
-                <thead>
-                <tr>
-                    <th> Статус</th>
-                    <th class = "name-rm">Поръчка</th>
-                    <th>Фабрикат</th>
-                    <th>Краен</th>
-                    <th>Краен Бр.</th>
-                    <th>Размер</th>
-                    <th>Цвят</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="(rm_and_order, orderNum) in mrp_on_hold_ord" :key="orderNum">
-                    <td>ЗАДЪРЖАНИ</td>
-                    <td>{{orderNum}}</td>
-                    <td>
-                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
-                            <div>
-                                {{each_rm.title_translation}}
                             </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                    <tr>
+                        <th> Статус</th>
+                        <th class = "name-rm">Поръчка</th>
+                        <th>Фабрикат</th>
+                        <th>Краен</th>
+                        <th>Краен Бр.</th>
+                        <th>Размер</th>
+                        <th>Цвят</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(rm_and_order, orderNum) in mrp_on_hold_ord" :key="orderNum">
+                        <td>ЗАДЪРЖАНИ</td>
+                        <td>{{orderNum}}</td>
+                        <td>
+                            <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                                <div>
+                                    {{each_rm.title_translation}}
+                                </div>
 
-                        </div>
-                    </td>
-                    <td>
-                        <div v-for="(order, index) in rm_and_order[1]" :key="index">
-                            <div>
-                                {{order.name}}-{{order.size}}
                             </div>
+                        </td>
+                        <td>
+                            <div v-for="(order, index) in rm_and_order[1]" :key="index">
+                                <div>
+                                    {{order.name}}-{{order.size}}
+                                </div>
 
-                        </div>
-                    </td>
-                    <td>
-                        <div v-for="(fin_qty, index) in rm_and_order[2]" :key="index">
-                            <div>
-                                {{fin_qty}}
                             </div>
+                        </td>
+                        <td>
+                            <div v-for="(fin_qty, index) in rm_and_order[2]" :key="index">
+                                <div>
+                                    {{fin_qty}}
+                                </div>
 
-                        </div>
-                    </td>
-                    <td>
-                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
-                            <div>
-                                {{each_rm.size}}
                             </div>
+                        </td>
+                        <td>
+                            <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                                <div>
+                                    {{each_rm.size}}
+                                </div>
 
-                        </div>
-                    </td>
-                    <td>
-                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
-                            <div>
-                                {{each_rm.color}}
                             </div>
+                        </td>
+                        <td>
+                            <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                                <div>
+                                    {{each_rm.color}}
+                                </div>
 
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <table>
-                <thead>
-                <tr>
-                    <th> Статус</th>
-                    <th class = "name-rm">Поръчка</th>
-                    <th>Фабрикат</th>
-                    <th>Краен</th>
-                    <th>Краен Бр.</th>
-                    <th>Размер</th>
-                    <th>Цвят</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="(rm_and_order, orderNum) in mrp_pending_ord" :key="orderNum">
-                    <td>ЧАКАЩИ</td>
-                    <td>{{orderNum}}</td>
-                    <td>
-                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
-                            <div>
-                                {{each_rm.title_translation}}
                             </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                    <tr>
+                        <th> Статус</th>
+                        <th class = "name-rm">Поръчка</th>
+                        <th>Фабрикат</th>
+                        <th>Краен</th>
+                        <th>Краен Бр.</th>
+                        <th>Размер</th>
+                        <th>Цвят</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(rm_and_order, orderNum) in mrp_pending_ord" :key="orderNum">
+                        <td>ЧАКАЩИ</td>
+                        <td>{{orderNum}}</td>
+                        <td>
+                            <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                                <div>
+                                    {{each_rm.title_translation}}
+                                </div>
 
-                        </div>
-                    </td>
-                    <td>
-                        <div v-for="(order, index) in rm_and_order[1]" :key="index">
-                            <div>
-                                {{order.name}}-{{order.size}}
                             </div>
+                        </td>
+                        <td>
+                            <div v-for="(order, index) in rm_and_order[1]" :key="index">
+                                <div>
+                                    {{order.name}}-{{order.size}}
+                                </div>
 
-                        </div>
-                    </td>
-                    <td>
-                        <div v-for="(fin_qty, index) in rm_and_order[2]" :key="index">
-                            <div>
-                                {{fin_qty}}
                             </div>
+                        </td>
+                        <td>
+                            <div v-for="(fin_qty, index) in rm_and_order[2]" :key="index">
+                                <div>
+                                    {{fin_qty}}
+                                </div>
 
-                        </div>
-                    </td>
-                    <td>
-                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
-                            <div>
-                                {{each_rm.size}}
                             </div>
+                        </td>
+                        <td>
+                            <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                                <div>
+                                    {{each_rm.size}}
+                                </div>
 
-                        </div>
-                    </td>
-                    <td>
-                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
-                            <div>
-                                {{each_rm.color}}
                             </div>
+                        </td>
+                        <td>
+                            <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                                <div>
+                                    {{each_rm.color}}
+                                </div>
 
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
 
     </div>
@@ -211,14 +216,17 @@
 
                 mrp_pending_rm: {},
                 mrp_pending_ord: {},
-
-                cron_status: false
+                cron_status: false,
+                load_spinner:true
 
             }
         },
         computed:{
              checkCronStatus() {
                 return this.cron_status
+            },
+            checkSpnner(){
+                 return this.load_spinner
             }
         },
         methods:{
@@ -300,6 +308,7 @@
             this.mrp_processing_ord = this.mrp_plan(this.order_processing)[1]
             this.mrp_on_hold_ord = this.mrp_plan(this.orders_on_hold)[1]
             this.mrp_pending_ord = this.mrp_plan(this.orders_pending)[1]
+            this.load_spinner = false
 
 
 
@@ -309,6 +318,19 @@
 </script>
 
 <style scoped>
+    .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
     table{
         margin-top: 1rem;
     }
