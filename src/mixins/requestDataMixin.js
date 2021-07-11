@@ -11,6 +11,16 @@ const requestsDataMixin = {
         }
     },
     methods:{
+        async getCronStatus(){
+            const preFix = 'CronStatus'
+            const finalUrl = baseUrl + preFix
+            const result = await axios.get(finalUrl,{
+                headers: {
+                    'Authorization': `token ${getUserToken()}`
+                }
+            })
+            return  result.data
+        },
         async getB2C_Orders(){
             const preFix = 'b2c-orders/'
             const finalUrl = baseUrl + preFix

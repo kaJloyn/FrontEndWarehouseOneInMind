@@ -1,65 +1,192 @@
 <template>
-    <div>
-        <table>
-            <thead>
-            <tr>
-                <th> Статус</th>
-                <th class = "name-rm">Поръчка</th>
-                <th>Фабрикат</th>
-                <th>Краен</th>
-                <th>Краен Бр.</th>
-                <th>Размер</th>
-                <th>Цвят</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="(rm_and_order, orderNum) in mrp_processing_ord" :key="orderNum">
-                <td>ОБРАБОТКА</td>
-                <td>{{orderNum}}</td>
-                <td>
-                    <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
-                        <div>
-                            {{each_rm.title_translation}}
-                        </div>
+    <div >
+        <div v-if="checkCronStatus">
+            <p>
+                Поръчките се обновяват моля да опитате след 3 минути
+            </p>
+        </div>
+        <div v-else>
+            <table>
+                <thead>
+                <tr>
+                    <th> Статус</th>
+                    <th class = "name-rm">Поръчка</th>
+                    <th>Фабрикат</th>
+                    <th>Краен</th>
+                    <th>Краен Бр.</th>
+                    <th>Размер</th>
+                    <th>Цвят</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(rm_and_order, orderNum) in mrp_processing_ord" :key="orderNum">
+                    <td>ОБРАБОТКА</td>
+                    <td>{{orderNum}}</td>
+                    <td>
+                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                            <div>
+                                {{each_rm.title_translation}}
+                            </div>
 
-                    </div>
-                </td>
-                <td>
-                    <div v-for="(order, index) in rm_and_order[1]" :key="index">
-                        <div>
-                            {{order.name}}-{{order.size}}
                         </div>
+                    </td>
+                    <td>
+                        <div v-for="(order, index) in rm_and_order[1]" :key="index">
+                            <div>
+                                {{order.name}}-{{order.size}}
+                            </div>
 
-                    </div>
-                </td>
-                <td>
-                    <div v-for="(fin_qty, index) in rm_and_order[2]" :key="index">
-                        <div>
-                            {{fin_qty}}
                         </div>
+                    </td>
+                    <td>
+                        <div v-for="(fin_qty, index) in rm_and_order[2]" :key="index">
+                            <div>
+                                {{fin_qty}}
+                            </div>
 
-                    </div>
-                </td>
-                <td>
-                    <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
-                        <div>
-                            {{each_rm.size}}
                         </div>
+                    </td>
+                    <td>
+                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                            <div>
+                                {{each_rm.size}}
+                            </div>
 
-                    </div>
-                </td>
-                <td>
-                    <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
-                        <div>
-                            {{each_rm.color}}
                         </div>
+                    </td>
+                    <td>
+                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                            <div>
+                                {{each_rm.color}}
+                            </div>
 
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                <tr>
+                    <th> Статус</th>
+                    <th class = "name-rm">Поръчка</th>
+                    <th>Фабрикат</th>
+                    <th>Краен</th>
+                    <th>Краен Бр.</th>
+                    <th>Размер</th>
+                    <th>Цвят</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(rm_and_order, orderNum) in mrp_on_hold_ord" :key="orderNum">
+                    <td>ЗАДЪРЖАНИ</td>
+                    <td>{{orderNum}}</td>
+                    <td>
+                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                            <div>
+                                {{each_rm.title_translation}}
+                            </div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div v-for="(order, index) in rm_and_order[1]" :key="index">
+                            <div>
+                                {{order.name}}-{{order.size}}
+                            </div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div v-for="(fin_qty, index) in rm_and_order[2]" :key="index">
+                            <div>
+                                {{fin_qty}}
+                            </div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                            <div>
+                                {{each_rm.size}}
+                            </div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                            <div>
+                                {{each_rm.color}}
+                            </div>
+
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                <tr>
+                    <th> Статус</th>
+                    <th class = "name-rm">Поръчка</th>
+                    <th>Фабрикат</th>
+                    <th>Краен</th>
+                    <th>Краен Бр.</th>
+                    <th>Размер</th>
+                    <th>Цвят</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(rm_and_order, orderNum) in mrp_pending_ord" :key="orderNum">
+                    <td>ЧАКАЩИ</td>
+                    <td>{{orderNum}}</td>
+                    <td>
+                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                            <div>
+                                {{each_rm.title_translation}}
+                            </div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div v-for="(order, index) in rm_and_order[1]" :key="index">
+                            <div>
+                                {{order.name}}-{{order.size}}
+                            </div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div v-for="(fin_qty, index) in rm_and_order[2]" :key="index">
+                            <div>
+                                {{fin_qty}}
+                            </div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                            <div>
+                                {{each_rm.size}}
+                            </div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                            <div>
+                                {{each_rm.color}}
+                            </div>
+
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
+
 </template>
 
 <script>
@@ -78,8 +205,20 @@
                 all_raw_materials:[],
                 mrp_processing_rm: {},
                 mrp_processing_ord: {},
-                test1: {order:[{qty:1},]}
 
+                mrp_on_hold_rm: {},
+                mrp_on_hold_ord: {},
+
+                mrp_pending_rm: {},
+                mrp_pending_ord: {},
+
+                cron_status: false
+
+            }
+        },
+        computed:{
+             checkCronStatus() {
+                return this.cron_status
             }
         },
         methods:{
@@ -88,16 +227,11 @@
                 return this.all_raw_materials.find(item => item.id === id)
 
             },
-            testDeep(){
-                let newObj = cloneDeep(this.test1)
-                newObj.order[0].qty = 0
-                return [newObj, this.test1]
 
-            },
 
             mrp_plan(orders){
                 let final_products_copy = cloneDeep(this.all_final_products)
-                let total_per_rm = {}
+                // let total_per_rm = {}
                 let total_per_order = {}
                 for (let each_ord of orders){
                     for ( let each_fin_prd of this.all_final_products){
@@ -105,14 +239,15 @@
                             let cur_raw_mat_id = each_fin_prd.raw_material
                             let cur_raw_mat = this.getRawMaterialById(cur_raw_mat_id)
 
-                            if(total_per_rm[cur_raw_mat_id]){
-                                total_per_rm[cur_raw_mat_id][0] += 1
-                                total_per_rm[cur_raw_mat_id][1].push(each_ord)
-                            }
-                            else{
-                                total_per_rm[cur_raw_mat_id] = [1, []]
-                                total_per_rm[cur_raw_mat_id][1].push(each_ord)
-                            }
+                            // this calculates per raw material, but returns object where the key is raw id
+                            // if(total_per_rm[cur_raw_mat_id]){
+                            //     total_per_rm[cur_raw_mat_id][0] += 1
+                            //     total_per_rm[cur_raw_mat_id][1].push(each_ord)
+                            // }
+                            // else{
+                            //     total_per_rm[cur_raw_mat_id] = [1, []]
+                            //     total_per_rm[cur_raw_mat_id][1].push(each_ord)
+                            // }
 
                             let each_fin_prd_copy = final_products_copy.find(item => item.id === each_fin_prd.id)
 
@@ -138,17 +273,20 @@
                     }
                 }
                 let final_per_rm = []
-                for (const [key, value] of Object.entries(total_per_rm)){
-                    // console.log(value, 'v')
-                    let id = Number(key)
-                    let cur_raw_mat = this.getRawMaterialById(id)
-                    let sup_el = [cur_raw_mat, value]
-                    final_per_rm.push(sup_el)
-                }
+                // this calculates per raw material, but returns object where the key raw mat object
+                // for (const [key, value] of Object.entries(total_per_rm)){
+                //     // console.log(value, 'v')
+                //     let id = Number(key)
+                //     let cur_raw_mat = this.getRawMaterialById(id)
+                //     let sup_el = [cur_raw_mat, value]
+                //     final_per_rm.push(sup_el)
+                // }
                 return [final_per_rm, total_per_order]
             },
         },
         async created() {
+            let cron_obj = await this.getCronStatus()
+            this.cron_status = cron_obj[0].status
             let all_b2c_orders = await this.getB2C_Orders()
             this.all_final_products = await this.getFinalProducts()
             this.all_raw_materials = await this.getRawMaterials()
@@ -158,9 +296,12 @@
             this.orders_pending = all_b2c_orders.filter(item => item.order_status==='pending')
 
 
-            this.mrp_processing_rm = this.mrp_plan(this.order_processing)[0]
+
             this.mrp_processing_ord = this.mrp_plan(this.order_processing)[1]
-            console.log(this.mrp_processing_ord)
+            this.mrp_on_hold_ord = this.mrp_plan(this.orders_on_hold)[1]
+            this.mrp_pending_ord = this.mrp_plan(this.orders_pending)[1]
+
+
 
 
         }
