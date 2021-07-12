@@ -16,9 +16,12 @@
                         <th class = "name-rm">Поръчка</th>
                         <th>Фабрикат</th>
                         <th>Краен</th>
+                        <th>Краен2</th>
                         <th>Краен Бр.</th>
                         <th>Размер</th>
                         <th>Цвят</th>
+                        <th>Клиент</th>
+                        <th>Тел</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -34,13 +37,22 @@
                             </div>
                         </td>
                         <td>
-                            <div v-for="(order, index) in rm_and_order[1]" :key="index">
+                            <div v-for="(each_order_line, index) in rm_and_order[3]" :key="index">
                                 <div>
-                                    {{order.name}}-{{order.size}}
+                                    {{each_order_line.product_name}}
                                 </div>
 
                             </div>
                         </td>
+                        <td>
+                            <div v-for="(each_order_line, index) in rm_and_order[3]" :key="index">
+                                <div>
+                                    {{each_order_line.product_name_no_size}}
+                                </div>
+
+                            </div>
+                        </td>
+
                         <td>
                             <div v-for="(fin_qty, index) in rm_and_order[2]" :key="index">
                                 <div>
@@ -65,6 +77,22 @@
 
                             </div>
                         </td>
+                        <td>
+                            <div v-for="(each_order_line, index) in rm_and_order[3]" :key="index">
+                                <div>
+                                    {{each_order_line.first_name}}-{{each_order_line.last_name}}
+                                </div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(each_order_line, index) in rm_and_order[3]" :key="index">
+                                <div>
+                                    {{each_order_line.phone}}
+                                </div>
+
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -75,14 +103,17 @@
                         <th class = "name-rm">Поръчка</th>
                         <th>Фабрикат</th>
                         <th>Краен</th>
+                        <th>Краен2</th>
                         <th>Краен Бр.</th>
                         <th>Размер</th>
                         <th>Цвят</th>
+                        <th>Клиент</th>
+                        <th>Тел</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="(rm_and_order, orderNum) in mrp_on_hold_ord" :key="orderNum">
-                        <td>ЗАДЪРЖАНИ</td>
+                        <td>Задържани</td>
                         <td>{{orderNum}}</td>
                         <td>
                             <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
@@ -93,13 +124,22 @@
                             </div>
                         </td>
                         <td>
-                            <div v-for="(order, index) in rm_and_order[1]" :key="index">
+                            <div v-for="(each_order_line, index) in rm_and_order[3]" :key="index">
                                 <div>
-                                    {{order.name}}-{{order.size}}
+                                    {{each_order_line.product_name}}
                                 </div>
 
                             </div>
                         </td>
+                        <td>
+                            <div v-for="(each_order_line, index) in rm_and_order[3]" :key="index">
+                                <div>
+                                    {{each_order_line.product_name_no_size}}
+                                </div>
+
+                            </div>
+                        </td>
+
                         <td>
                             <div v-for="(fin_qty, index) in rm_and_order[2]" :key="index">
                                 <div>
@@ -124,6 +164,22 @@
 
                             </div>
                         </td>
+                        <td>
+                            <div v-for="(each_order_line, index) in rm_and_order[3]" :key="index">
+                                <div>
+                                    {{each_order_line.first_name}}-{{each_order_line.last_name}}
+                                </div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(each_order_line, index) in rm_and_order[3]" :key="index">
+                                <div>
+                                    {{each_order_line.phone}}
+                                </div>
+
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -134,9 +190,12 @@
                         <th class = "name-rm">Поръчка</th>
                         <th>Фабрикат</th>
                         <th>Краен</th>
+                        <th>Краен2</th>
                         <th>Краен Бр.</th>
                         <th>Размер</th>
                         <th>Цвят</th>
+                        <th>Клиент</th>
+                        <th>Тел</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -152,13 +211,22 @@
                             </div>
                         </td>
                         <td>
-                            <div v-for="(order, index) in rm_and_order[1]" :key="index">
+                            <div v-for="(each_order_line, index) in rm_and_order[3]" :key="index">
                                 <div>
-                                    {{order.name}}-{{order.size}}
+                                    {{each_order_line.product_name}}
                                 </div>
 
                             </div>
                         </td>
+                        <td>
+                            <div v-for="(each_order_line, index) in rm_and_order[3]" :key="index">
+                                <div>
+                                    {{each_order_line.product_name_no_size}}
+                                </div>
+
+                            </div>
+                        </td>
+
                         <td>
                             <div v-for="(fin_qty, index) in rm_and_order[2]" :key="index">
                                 <div>
@@ -183,9 +251,26 @@
 
                             </div>
                         </td>
+                        <td>
+                            <div v-for="(each_order_line, index) in rm_and_order[3]" :key="index">
+                                <div>
+                                    {{each_order_line.first_name}}-{{each_order_line.last_name}}
+                                </div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(each_order_line, index) in rm_and_order[3]" :key="index">
+                                <div>
+                                    {{each_order_line.phone}}
+                                </div>
+
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
+
             </div>
 
         </div>
@@ -238,61 +323,55 @@
 
 
             mrp_plan(orders){
+
                 let final_products_copy = cloneDeep(this.all_final_products)
                 // let total_per_rm = {}
                 let total_per_order = {}
-                for (let each_ord of orders){
-                    for ( let each_fin_prd of this.all_final_products){
-                        if(each_ord.product_id === each_fin_prd.b2c_website_product_id && each_ord.product_size.toUpperCase() === each_fin_prd.size){
-                            let cur_raw_mat_id = each_fin_prd.raw_material
-                            let cur_raw_mat = this.getRawMaterialById(cur_raw_mat_id)
+                let cur_raw_mat_id;
+                let cur_raw_mat;
+                let final_product;
 
-                            // this calculates per raw material, but returns object where the key is raw id
-                            // if(total_per_rm[cur_raw_mat_id]){
-                            //     total_per_rm[cur_raw_mat_id][0] += 1
-                            //     total_per_rm[cur_raw_mat_id][1].push(each_ord)
-                            // }
-                            // else{
-                            //     total_per_rm[cur_raw_mat_id] = [1, []]
-                            //     total_per_rm[cur_raw_mat_id][1].push(each_ord)
-                            // }
+                for (let each_ord of orders) {
+                    final_product = this.all_final_products.find(item => item.b2c_website_product_id === each_ord.product_id &&
+                        item.size === each_ord.product_size.toUpperCase()
+                    )
+                    if (final_product) {
+                        cur_raw_mat_id = final_product.raw_material
+                        cur_raw_mat = this.getRawMaterialById(cur_raw_mat_id)
+                    } else {
+                        cur_raw_mat_id = 682
+                        cur_raw_mat = this.getRawMaterialById(cur_raw_mat_id)
+                        final_product = this.all_final_products.find(item => item.id === 2825)
+                    }
+                    let each_fin_prd_copy = final_products_copy.find(item => item.id === final_product.id)
 
-                            let each_fin_prd_copy = final_products_copy.find(item => item.id === each_fin_prd.id)
-
-                            if(total_per_order[each_ord.order_id]){
-                                total_per_order[each_ord.order_id][0].push(cur_raw_mat)
-                                total_per_order[each_ord.order_id][1].push(each_fin_prd)
-                                if(each_fin_prd_copy.quantity > 0){
-                                    total_per_order[each_ord.order_id][2].push(1)
-                                    each_fin_prd_copy.quantity -=1
-                                }
-
-                            }
-                            else{
-                                total_per_order[each_ord.order_id] = [ [], [], [] ]
-                                total_per_order[each_ord.order_id][0].push(cur_raw_mat)
-                                total_per_order[each_ord.order_id][1].push(each_fin_prd)
-                                if(each_fin_prd_copy.quantity > 0){
-                                    total_per_order[each_ord.order_id][2].push(1)
-                                    each_fin_prd_copy.quantity -=1
-                                }
-                            }
+                    if (total_per_order[each_ord.order_id]) {
+                        total_per_order[each_ord.order_id][0].push(cur_raw_mat)
+                        total_per_order[each_ord.order_id][1].push(final_product)
+                        total_per_order[each_ord.order_id][3].push(each_ord)
+                        if (each_fin_prd_copy.quantity > 0) {
+                            total_per_order[each_ord.order_id][2].push(1)
+                            each_fin_prd_copy.quantity -= 1
+                        }
+                    }
+                    else {
+                        total_per_order[each_ord.order_id] = [[], [], [], []]
+                        total_per_order[each_ord.order_id][0].push(cur_raw_mat)
+                        total_per_order[each_ord.order_id][1].push(final_product)
+                        total_per_order[each_ord.order_id][3].push(each_ord)
+                        if (each_fin_prd_copy.quantity > 0) {
+                            total_per_order[each_ord.order_id][2].push(1)
+                            each_fin_prd_copy.quantity -= 1
                         }
                     }
                 }
-                let final_per_rm = []
-                // this calculates per raw material, but returns object where the key raw mat object
-                // for (const [key, value] of Object.entries(total_per_rm)){
-                //     // console.log(value, 'v')
-                //     let id = Number(key)
-                //     let cur_raw_mat = this.getRawMaterialById(id)
-                //     let sup_el = [cur_raw_mat, value]
-                //     final_per_rm.push(sup_el)
-                // }
-                return [final_per_rm, total_per_order]
-            },
+                return total_per_order
+            }
+
+
         },
         async created() {
+            this.mrp_processing_rm = {}
             let cron_obj = await this.getCronStatus()
             this.cron_status = cron_obj[0].status
             let all_b2c_orders = await this.getB2C_Orders()
@@ -304,10 +383,10 @@
             this.orders_pending = all_b2c_orders.filter(item => item.order_status==='pending')
 
 
-
-            this.mrp_processing_ord = this.mrp_plan(this.order_processing)[1]
-            this.mrp_on_hold_ord = this.mrp_plan(this.orders_on_hold)[1]
-            this.mrp_pending_ord = this.mrp_plan(this.orders_pending)[1]
+            this.mrp_processing_ord = this.mrp_plan(this.order_processing)
+            console.log(this.mrp_processing_ord, 'orders pricessing')
+            this.mrp_on_hold_ord = this.mrp_plan(this.orders_on_hold)
+            this.mrp_pending_ord = this.mrp_plan(this.orders_pending)
             this.load_spinner = false
 
 
@@ -346,7 +425,7 @@
         text-align: center;
     }
     th{
-        font-size: 15px;
+        font-size: 13px;
         text-transform: uppercase;
         width: auto;
         text-align: center;
@@ -356,6 +435,7 @@
         color: #fff;
     }
     td{
+        font-size: 12px;
         padding: 10px;
         border: 1px solid black;
         border-collapse: collapse;
