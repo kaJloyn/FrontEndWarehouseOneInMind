@@ -321,9 +321,7 @@
 
             },
 
-
             mrp_plan(orders){
-
                 let final_products_copy = cloneDeep(this.all_final_products)
                 // let total_per_rm = {}
                 let total_per_order = {}

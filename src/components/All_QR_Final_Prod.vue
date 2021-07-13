@@ -20,8 +20,11 @@
                 <td>{{final_prd.color}}</td>
                 <td>
                     <img :src="final_prd.qr_code" alt="" @click="onPictureClick(
-                        final_prd.name, final_prd.qr_code, final_prd.size, final_prd.color
+                        final_prd.name, final_prd.qr_code, final_prd.size, final_prd.color, final_prd.image
                         )">
+                </td>
+                <td>
+                    <img :src="final_prd.image" alt="" >
                 </td>
 
             </tr>
@@ -45,9 +48,9 @@
         },
 
         methods:{
-            onPictureClick(item_name, item_picture, item_size, item_color){
+            onPictureClick(item_name, item_qr, item_size, item_color, item_pic){
                 this.$router.push({name:'picture',
-                    query:{ name:item_name, pic:item_picture, size: item_size, color:item_color}})
+                    query:{ name:item_name, qr:item_qr, size: item_size, color:item_color, pic:item_pic}})
             },
             onSearch(){
                 let allRows = document.querySelectorAll('tbody>tr')
@@ -71,6 +74,8 @@
 
         async created() {
             this.final_products = await this.getFinalProducts()
+            console.log(this.final_products)
+
         },
     }
 </script>
