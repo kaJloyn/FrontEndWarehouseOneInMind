@@ -46,7 +46,7 @@
                         <td>
                             <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
                                 <div>
-                                    {{each_rm.title_translation}}
+                                    {{each_rm.title}}
                                 </div>
 
                             </div>
@@ -169,7 +169,7 @@
                         <td>
                             <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
                                 <div>
-                                    {{each_rm.title_translation}}
+                                    {{each_rm.title}}
                                 </div>
 
                             </div>
@@ -293,7 +293,7 @@
                         <td>
                             <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
                                 <div>
-                                    {{each_rm.title_translation}}
+                                    {{each_rm.title}}
                                 </div>
 
                             </div>
