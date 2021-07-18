@@ -42,7 +42,14 @@
                     <tbody>
                     <tr v-for="(rm_and_order, orderNum) in mrp_processing_ord" :key="orderNum">
                         <td>ОБРАБОТКА</td>
-                        <td>{{orderNum}}</td>
+                        <td>
+                            <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                                <div>
+                                    {{orderNum}}
+                                </div>
+
+                            </div>
+                        </td>
                         <td>
                             <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
                                 <div>
@@ -93,6 +100,41 @@
                             </div>
                         </td>
                         <td>
+                            <div v-for="(fin_prd, index) in rm_and_order[1]" :key="index">
+                                <div>
+                                    {{fin_prd.foil_or_print}}
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(fin_prd, index) in rm_and_order[1]" :key="index">
+                                <div>
+                                    {{fin_prd.foil_type}}
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(fin_prd, index) in rm_and_order[1]" :key="index">
+                                <div>
+                                    {{fin_prd.foil_color}}
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(fin_prd, index) in rm_and_order[1]" :key="index">
+                                <div>
+                                    {{fin_prd.foil_size}}
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(fin_prd, index) in rm_and_order[1]" :key="index">
+                                <div>
+                                    {{fin_prd.letters_or_frame}}
+                                </div>
+                            </div>
+                        </td>
+                        <td>
                             <div v-for="(each_order_line, index) in rm_and_order[3]" :key="index">
                                 <div>
                                     {{each_order_line.first_name}}-{{each_order_line.last_name}}
@@ -123,9 +165,19 @@
                     <tbody>
                     <tr v-for="(rm, index) in mrp_processing_rm" :key="index">
                         <td>Обработка</td>
-                        <td>{{rm[0]['title']}}</td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][2]" :key="index" >
+                                <div>{{rm[0]['title']}}</div>
 
-                        <td>{{rm[1][0]}}</td>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div v-for="(final, index) in rm[1][2]" :key="index" >
+                                <div>1</div>
+
+                            </div>
+                        </td>
                         <td>
                             <div v-for="(final, index) in rm[1][2]" :key="index" >
                                 <div>{{final['product_name']}}</div>
@@ -138,8 +190,16 @@
 
                             </div>
                         </td>
-                        <td>{{rm[0]['size']}}</td>
-                        <td>{{rm[0]['color']}}</td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][2]" :key="index" >
+                                <div>{{rm[0]['size']}}</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][2]" :key="index" >
+                                <div>{{rm[0]['color']}}</div>
+                            </div>
+                        </td>
                         <!--                            <td>{{rm[1][2]}}</td>-->
                         <td>
                             <div v-for="(order, index) in rm[1][2]" :key="index">
@@ -165,11 +225,17 @@
                     <tbody>
                     <tr v-for="(rm_and_order, orderNum) in mrp_on_hold_ord" :key="orderNum">
                         <td>ЗАДЪРЖАНИ</td>
-                        <td>{{orderNum}}</td>
+                    <td>
+                        <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                            <div>
+                                {{orderNum}}
+                            </div>
+
+                        </div></td>
                         <td>
                             <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
                                 <div>
-                                    {{each_rm.title}}
+                                    {{each_rm.title_translation}}
                                 </div>
 
                             </div>
@@ -288,8 +354,15 @@
                     </thead>
                     <tbody>
                     <tr v-for="(rm_and_order, orderNum) in mrp_pending_ord" :key="orderNum">
-                        <td>ЗАДЪРЖАНИ</td>
-                        <td>{{orderNum}}</td>
+                        <td>ЧАКАЩИ</td>
+                        <td>
+                            <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
+                                <div>
+                                    {{orderNum}}
+                                </div>
+
+                            </div>
+                        </td>
                         <td>
                             <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
                                 <div>
@@ -369,10 +442,20 @@
                     </thead>
                     <tbody>
                     <tr v-for="(rm, index) in mrp_pending_rm" :key="index">
-                        <td>ЗАДЪРЖАНИ</td>
-                        <td>{{rm[0]['title']}}</td>
+                        <td>ЧАКАЩИ</td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][2]" :key="index" >
+                                <div>{{rm[0]['title']}}</div>
 
-                        <td>{{rm[1][0]}}</td>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div v-for="(final, index) in rm[1][2]" :key="index" >
+                                <div>1</div>
+
+                            </div>
+                        </td>
                         <td>
                             <div v-for="(final, index) in rm[1][2]" :key="index" >
                                 <div>{{final['product_name']}}</div>
@@ -385,8 +468,16 @@
 
                             </div>
                         </td>
-                        <td>{{rm[0]['size']}}</td>
-                        <td>{{rm[0]['color']}}</td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][2]" :key="index" >
+                                <div>{{rm[0]['size']}}</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][2]" :key="index" >
+                                <div>{{rm[0]['color']}}</div>
+                            </div>
+                        </td>
                         <!--                            <td>{{rm[1][2]}}</td>-->
                         <td>
                             <div v-for="(order, index) in rm[1][2]" :key="index">
@@ -436,8 +527,8 @@
 
                 cron_status: false,
                 load_spinner:true,
-                tablePerOrderTh: ['Статус', 'Поръчка', 'Фабрикат', 'Краен', 'Краен2', 'Краен Бр','Размер', 'Цвят', 'Клиент', 'Тел' ],
-                tableTotalRmTh:['Статус', 'Фабрикат', 'Бр', 'Краен', 'Краен2', 'Размер', 'Цвят', 'Поръчки'],
+                tablePerOrderTh: ['Статус', 'Поръчка', 'Фабрикат', 'Краен', 'Краен2', 'Краен Бр','Размер', 'Цвят', 'foil_or_print',	'foil_type','foil_color','foil_size','letters_or_frame','Клиент', 'Тел' ],
+                tableTotalRmTh:['Статус', 'Фабрикат', 'Бр', 'Краен', 'Краен2', 'Размер', 'Цвят', 'Поръчки', 'foil_or_print','foil_type','foil_color','foil_size','letters_or_frame'],
 
                 showProcessing:false,
                 showOnHold:false,
