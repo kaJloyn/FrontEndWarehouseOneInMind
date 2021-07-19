@@ -254,7 +254,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="(rm_and_order, orderNum) in mrp_on_hold_ord" :key="orderNum">
-                        <td>ОБРАБОТКА</td>
+                        <td>ЗАДЪРЖАНИ</td>
                         <td>
                             <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
                                 <div>
@@ -377,7 +377,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="(rm, index) in mrp_on_hold_rm" :key="index">
-                        <td>Обработка</td>
+                        <td>ЗАДЪРЖАНИ</td>
                         <td>
                             <div v-for="(final, index) in rm[1][2]" :key="index" >
                                 <div>{{rm[0]['title']}}</div>
@@ -468,7 +468,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="(rm_and_order, orderNum) in mrp_pending_ord" :key="orderNum">
-                        <td>ОБРАБОТКА</td>
+                        <td>ЧАКАЩИ</td>
                         <td>
                             <div v-for="(each_rm, index) in rm_and_order[0]" :key="index">
                                 <div>
@@ -591,7 +591,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="(rm, index) in mrp_pending_rm" :key="index">
-                        <td>Обработка</td>
+                        <td>ЧАКАЩИ</td>
                         <td>
                             <div v-for="(final, index) in rm[1][2]" :key="index" >
                                 <div>{{rm[0]['title']}}</div>
