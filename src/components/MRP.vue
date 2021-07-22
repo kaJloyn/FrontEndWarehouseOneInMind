@@ -191,8 +191,8 @@
                             </div>
                         </td>
                         <td>
-                            <div v-for="(final, index) in rm[1][2]" :key="index" >
-                                <div>{{rm[0]['size']}}</div>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.size}}</div>
                             </div>
                         </td>
                         <td>
