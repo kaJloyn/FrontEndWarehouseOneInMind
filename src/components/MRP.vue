@@ -211,31 +211,37 @@
                         <td>
                             <div v-for="(final, index) in rm[1][1]" :key="index" >
                                 <div>{{final.foil_or_print}}</div>
-
                             </div>
                         </td>
                         <td>
                             <div v-for="(final, index) in rm[1][1]" :key="index" >
                                 <div>{{final.foil_type}}</div>
-
                             </div>
                         </td>
                         <td>
                             <div v-for="(final, index) in rm[1][1]" :key="index" >
                                 <div>{{final.foil_color}}</div>
-
                             </div>
                         </td>
                         <td>
                             <div v-for="(final, index) in rm[1][1]" :key="index" >
                                 <div>{{final.foil_size}}</div>
-
                             </div>
                         </td>
                         <td>
                             <div v-for="(final, index) in rm[1][1]" :key="index" >
                                 <div>{{final.letters_or_frame}}</div>
 
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.foil_or_print === 'принт' ? 10 : 2.5}}</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>1.5</div>
                             </div>
                         </td>
 
@@ -707,7 +713,7 @@
                 cron_status: false,
                 load_spinner:true,
                 tablePerOrderTh: ['Статус', 'Поръчка', 'Фабрикат', 'Краен', 'Краен2', 'Краен Бр','Размер', 'Цвят', 'foil_or_print',	'foil_type','foil_color','foil_size','letters_or_frame','Клиент', 'Тел' ],
-                tableTotalRmTh:['Статус', 'Фабрикат', 'Бр', 'Краен', 'Краен2', 'Размер', 'Цвят', 'Поръчки', 'foil_or_print','foil_type','foil_color','foil_size','letters_or_frame'],
+                tableTotalRmTh:['Статус', 'Фабрикат', 'Бр', 'Краен', 'Краен2', 'Размер', 'Цвят', 'Поръчки', 'foil_or_print','foil_type','foil_color','foil_size','letters_or_frame', 't-печат/печат', 't-залепяне'],
 
                 showProcessing:false,
                 showOnHold:false,
