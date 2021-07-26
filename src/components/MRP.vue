@@ -32,8 +32,8 @@
             </div>
 
             <div class="tables"  v-if="checkShowProcessing">
-                <div class="description">ПЛАН ПО ПОРЪЧКИ</div>
-                <table v-if="mrp_processing_ord">
+<!--                <div class="description">ПЛАН ПО ПОРЪЧКИ</div>-->
+                <table v-if="mrp_processing_ord.length > 0">
                     <thead>
                     <tr>
                         <th v-for="(item, index) in tablePerOrderTh" :key="index"> {{item}}</th>
@@ -236,12 +236,12 @@
                         </td>
                         <td>
                             <div v-for="(final, index) in rm[1][1]" :key="index" >
-                                <div>{{final.foil_or_print === 'принт' ? 10 : 2.5}}</div>
+                                <div>{{final.foil_or_print === 'принт' ? 10/60 : 2.5/60}}</div>
                             </div>
                         </td>
                         <td>
                             <div v-for="(final, index) in rm[1][1]" :key="index" >
-                                <div>1.5</div>
+                                <div>{{1.5/60}}</div>
                             </div>
                         </td>
 
@@ -251,8 +251,8 @@
                 </table>
             </div>
             <div class="tables"  v-if="checkShowOnHold">
-                <div class="description">ПЛАН ПО ПОРЪЧКИ</div>
-                <table v-if="mrp_on_hold_ord">
+<!--                <div class="description">ПЛАН ПО ПОРЪЧКИ</div>-->
+                <table v-if="mrp_on_hold_ord.length > 0">
                     <thead>
                     <tr>
                         <th v-for="(item, index) in tablePerOrderTh" :key="index"> {{item}}</th>
@@ -465,8 +465,8 @@
 
             </div>
             <div class="tables"  v-if="checkShowPending">
-                <div class="description">ПЛАН ПО ПОРЪЧКИ</div>
-                <table v-if="mrp_pending_ord">
+<!--                <div class="description">ПЛАН ПО ПОРЪЧКИ</div>-->
+                <table v-if="mrp_pending_ord.length > 0">
                     <thead>
                     <tr>
                         <th v-for="(item, index) in tablePerOrderTh" :key="index"> {{item}}</th>
@@ -840,17 +840,13 @@
             this.orders_on_hold = all_b2c_orders.filter(item => item.order_status === 'on-hold')
             this.orders_pending = all_b2c_orders.filter(item => item.order_status==='pending')
 
-
-            this.mrp_processing_ord = this.mrp_plan(this.order_processing)[1]
+            // this.mrp_processing_ord = this.mrp_plan(this.order_processing)[1]
             this.mrp_processing_rm =  this.mrp_plan(this.order_processing)[0]
 
-
-
-            this.mrp_on_hold_ord = this.mrp_plan(this.orders_on_hold)[1]
+            // this.mrp_on_hold_ord = this.mrp_plan(this.orders_on_hold)[1]
             this.mrp_on_hold_rm = this.mrp_plan(this.orders_on_hold)[0]
 
-
-            this.mrp_pending_ord = this.mrp_plan(this.orders_pending)[1]
+            // this.mrp_pending_ord = this.mrp_plan(this.orders_pending)[1]
             this.mrp_pending_rm =  this.mrp_plan(this.orders_pending)[0]
 
             this.load_spinner = false
