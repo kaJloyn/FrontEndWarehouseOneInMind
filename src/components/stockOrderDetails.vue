@@ -80,18 +80,19 @@ name: "stockOrderDetails",
       return 'Няма доставчик'
     },
     async orderStatus(orderId, status){
-     let newRawMatQyantity = 0
-     for (let eachRawMaterial of this.getCurrentStockOrderDetails){
-       let rawMaterialId = eachRawMaterial.raw_material
-       let currentRawMatQuantity = this.rawMaterials.find(rm => rm.id == rawMaterialId).quantity
-       if (status){
-         newRawMatQyantity = currentRawMatQuantity + eachRawMaterial.quantity
-       }
-       else{
-         newRawMatQyantity = currentRawMatQuantity - eachRawMaterial.quantity
-       }
-       await this.updateRawMaterialQauntity(rawMaterialId, newRawMatQyantity)
-     }
+     // calculate quantity and update it/ this is obsolete, stock will be put on stock with qr
+     // let newRawMatQyantity = 0
+     // for (let eachRawMaterial of this.getCurrentStockOrderDetails){
+     //   let rawMaterialId = eachRawMaterial.raw_material
+     //   let currentRawMatQuantity = this.rawMaterials.find(rm => rm.id == rawMaterialId).quantity
+     //   if (status){
+     //     newRawMatQyantity = currentRawMatQuantity + eachRawMaterial.quantity
+     //   }
+     //   else{
+     //     newRawMatQyantity = currentRawMatQuantity - eachRawMaterial.quantity
+     //   }
+     //   await this.updateRawMaterialQauntity(rawMaterialId, newRawMatQyantity)
+     // }
 
       await this.changeOrderStatus(orderId, status)
       let updatedSotckOrder = await this.stockOrderById(this.currentStockOrderId)
