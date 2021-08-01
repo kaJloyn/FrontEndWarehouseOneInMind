@@ -43,7 +43,7 @@
                     confirm(`Заприхождавате отрицателно число ${this.input_qty.value}  Искате да продължите ?`)
                 }
                 else {
-                    confirm(`Заприхождаване на Ревизия ${this.input_qty.value}`)
+                    confirm(`Заприхождаване на Ревизия ${this.input_qty.value} бр.`)
                     let raw_matrls = await this.getRawMaterials()
                     let finl_prodcs = await this.getFinalProducts()
 
@@ -64,7 +64,7 @@
                     }
 
 
-                    setTimeout(this.$router.push({name:'qrcode-in'}), 3000)
+                    setTimeout(this.$router.push({name:'qrcode-revision'}), 3000)
 
 
                 }

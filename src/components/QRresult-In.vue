@@ -43,7 +43,7 @@
                     confirm(`Вадите по голямо количество ${this.input_qty.value} от колкото имате, ще останете с ${final_qty}. Искате да продължите ?`)
                 }
                 else {
-                    confirm(`Прибавяте ${this.input_qty.value}`)
+                    confirm(`Прибавяте ${this.input_qty.value} бр.`)
                     let raw_matrls = await this.getRawMaterials()
                     let finl_prodcs = await this.getFinalProducts()
 
