@@ -14,6 +14,8 @@ import All_QR_Raw_Mat from "../components/All_QR_Raw_Mat"
 import All_QR_Final_Prod from "../components/All_QR_Final_Prod";
 import Inventory_Final_Prd from "../components/Inventory_Final_Prd";
 import MRP from "../components/MRP";
+import Qrcode_Revision from "../components/Qrcode_Revision";
+import QRresult_Revision from "../components/QRresult_Revision";
 
 Vue.use(VueRouter)
 
@@ -40,6 +42,27 @@ const routes = [
             }
         }
     },
+
+    {path: 'QR-Revision', component: Qrcode_Revision, name:'qrcode-revision',
+        beforeEnter(to, from, next){
+            if(sessionStorage.getItem('authToken')){
+                next()
+            }
+            else{
+                next('/login')
+            }
+        }
+    },
+    {path: 'qr-result-revision', component: QRresult_Revision, name:'QRresult_Revision',
+        beforeEnter(to, from, next){
+            if(sessionStorage.getItem('authToken')){
+                next()
+            }
+            else{
+                next('/login')
+            }
+        }
+    },
     {path: 'qr-result-out', component: QRresult_Out, name:'QRresult_Out',
         beforeEnter(to, from, next){
             if(sessionStorage.getItem('authToken')){
@@ -50,6 +73,7 @@ const routes = [
             }
         }
     },
+
     {path: 'qr-result-in', component: QRresult_In, name:'QRresult_In',
         beforeEnter(to, from, next){
             if(sessionStorage.getItem('authToken')){

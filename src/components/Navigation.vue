@@ -16,6 +16,9 @@
                     <router-link :key="$route.path" class="link-r" :to="{name:'qrcode-in'}" >QR +</router-link>
                 <li>
                 <li v-show="this.checkIfLoggedIn()">
+                    <router-link :key="$route.path" class="link-r" :to="{name:'qrcode-revision'}" >QR Revsion</router-link>
+                <li>
+                <li v-show="this.checkIfLoggedIn()">
                     <router-link class="link-r" :to="{name:'inventory'}">Нал. Полу-Фаб.</router-link>
                 </li>
                 <li v-show="this.checkIfLoggedIn()">
