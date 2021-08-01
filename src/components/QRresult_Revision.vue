@@ -10,7 +10,7 @@
                     <input id="quantity" type="number">
                 </div>
                 <div>
-                    <button @click="stockDeduct" > Прибави </button>
+                    <button @click="stockDeduct" > Ревизия </button>
                 </div>
             </article>
         </div>
