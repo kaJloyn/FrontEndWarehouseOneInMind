@@ -72,7 +72,7 @@
                     }
 
                 }
-                this.$router.push({name:'QRresult_In', params:{
+                this.$router.push({name:'QRresult_Revision', params:{
                         result: this.result
                     }})
                 this.pause()
