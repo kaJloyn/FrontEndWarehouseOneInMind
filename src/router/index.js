@@ -16,6 +16,9 @@ import Inventory_Final_Prd from "../components/Inventory_Final_Prd";
 import MRP from "../components/MRP";
 import Qrcode_Revision from "../components/Qrcode_Revision";
 import QRresult_Revision from "../components/QRresult_Revision";
+import Financial from "../components/Financial";
+
+
 
 Vue.use(VueRouter)
 
@@ -151,6 +154,16 @@ const routes = [
     ...productionRoutes,
 
     {path: '/login', name:'login', component: Login},
+    {path: 'finance', component: Financial, name: 'financial',
+        beforeEnter(to, from, next){
+            if(sessionStorage.getItem('authToken')){
+                next()
+            }
+            else{
+                next('/login')
+            }
+        }
+    },
     {path: '*', redirect:'/'}, // always must be at the end
 ]
 

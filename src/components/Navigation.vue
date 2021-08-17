@@ -45,6 +45,10 @@
                 <li v-show="this.checkIfLoggedIn()">
                     <router-link class="link-r" :to="{name:'MRP'}">MRP</router-link>
                 </li>
+                <li v-show="this.checkIfLoggedIn()">
+                    <router-link class="link-r" :to="{name:'financial'}">Finance</router-link>
+                </li>
+
                 <span class="welcome-msg" v-show="this.checkIfLoggedIn()">
                     <li class="link-r" >
                           Hello {{this.currentUsername()}} !

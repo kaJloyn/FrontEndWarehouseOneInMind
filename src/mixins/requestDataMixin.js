@@ -8,6 +8,7 @@ const requestsDataMixin = {
             stockOrders: [],
             ordersData: [],
             suppliers:[],
+            year : new Date().getFullYear()
         }
     },
     methods:{
@@ -20,6 +21,70 @@ const requestsDataMixin = {
                 }
             })
             return  result.data
+        },
+        async getVariableCosts(){
+            const preFix = `variable-costs/${this.year}/`
+            const finalUrl = baseUrl + preFix
+            const result = await axios.get(finalUrl,{
+                headers: {
+                    'Authorization': `token ${getUserToken()}`
+                }
+            })
+            if(result.data === 422){
+                this.$router.push({name:'home'})
+                return true
+            }
+            else{
+                return  result.data
+            }
+        },
+        async getFixedCostsCosts(){
+            const preFix = `fixed-costs/${this.year}/`
+            const finalUrl = baseUrl + preFix
+            const result = await axios.get(finalUrl,{
+                headers: {
+                    'Authorization': `token ${getUserToken()}`
+                }
+            })
+            if(result.data === 422){
+                this.$router.push({name:'home'})
+                return true
+            }
+            else{
+                return  result.data
+            }
+        },
+        async getCounterParties(){
+            const preFix = 'counterparty'
+            const finalUrl = baseUrl + preFix
+            const result = await axios.get(finalUrl,{
+                headers: {
+                    'Authorization': `token ${getUserToken()}`
+                }
+            })
+            if(result.data === 422){
+                this.$router.push({name:'home'})
+                return true
+            }
+            else{
+                return  result.data
+            }
+        },
+        async getRevenue(){
+            const preFix = `revenue/${this.year}/`
+            const finalUrl = baseUrl + preFix
+            const result = await axios.get(finalUrl,{
+                headers: {
+                    'Authorization': `token ${getUserToken()}`
+                }
+            })
+            if(result.data === 422){
+                this.$router.push({name:'home'})
+                return true
+            }
+            else{
+                return  result.data
+            }
         },
         async getB2C_Orders(){
             const preFix = 'b2c-orders/'
