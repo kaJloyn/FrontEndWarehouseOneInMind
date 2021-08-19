@@ -1,90 +1,90 @@
 <template>
     <div>
-       <div v-for="(month, index) in Object.keys(var_costs)" :key="index">
-           <div v-if="var_costs[`${month}`].length > 1" @click="handleMonthClick($event ,var_costs[`${month}`][0], month)" class="month">
-               {{month}} {{var_costs[`${month}`][0].show ? '-' : '+'}}
-               <div v-if="var_costs[`${month}`][0].show" class="tables">
+        <div v-for="(month, index) in Object.keys(var_costs)" :key="index">
+            <div v-if="var_costs[`${month}`].length > 1" @click="handleMonthClick($event ,var_costs[`${month}`][0], month)" class="month">
+                {{month}} {{var_costs[`${month}`][0].show ? '-' : '+'}}
+                <div v-if="var_costs[`${month}`][0].show" class="tables">
 
-                   <table>
-                       <thead>
-                           <tr>
-                               <th v-for="(head, index) of tableHeadsVC" :key="index">{{head}}</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                       <tr v-for="(translation, index) of getSetOfTranslationsForEachMonth(month)" :key="index">
-                           <td class="td-normal">{{translation}}</td>
-                           <td class="td-normal">{{totalCostForEachTranslation(var_costs[`${month}`].slice(1), translation, 'cost_no_VAT')}}</td>
-                           <td class="td-normal">{{totalCostForEachTranslation(var_costs[`${month}`].slice(1), translation, 'VAT')}}</td>
-                           <td class="td-normal">{{
-                               sumTwoNumbersAndRoundThem(totalCostForEachTranslation(var_costs[`${month}`].slice(1), translation, 'cost_no_VAT'), totalCostForEachTranslation(var_costs[`${month}`].slice(1), translation, 'VAT'))
+                    <table>
+                        <thead>
+                        <tr>
+                            <th v-for="(head, index) of tableHeadsVC" :key="index">{{head}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(translation, index) of getSetOfTranslationsForEachMonth(month)" :key="index">
+                            <td class="td-normal">{{translation}}</td>
+                            <td class="td-normal">{{totalCostForEachTranslation(month, translation, 'cost_no_VAT')}}</td>
+                            <td class="td-normal">{{totalCostForEachTranslation(month, translation, 'VAT')}}</td>
+                            <td class="td-normal">{{
+                                sumTwoNumbersAndRoundThem(totalCostForEachTranslation(month, translation, 'cost_no_VAT'), totalCostForEachTranslation(month, translation, 'VAT'))
                                 }}
-                           </td>
-                           <div class="td-special" >
-                               <div v-for="(cost, index) of getAllCostsPerTranslation(var_costs[`${month}`].slice(1), translation)" :key="index">
-                                   <td class="td-data">
-                                       {{cost.supplier_name}}-{{(Number(cost.cost_no_VAT) + Number(cost.VAT)).toFixed(0)}}
-                                   </td>
-                               </div>
-                           </div>
-                           <td class="total-cost-per-type" v-if="index===0">
-                               {{totalCostPerMonth(var_costs[`${month}`].slice(1), 'cost_no_VAT', 'VAT')}}
-                           </td>
+                            </td>
+                            <div class="td-special" >
+                                <div v-for="(cost, index) of getAllCostsPerTranslation(var_costs[`${month}`].slice(1), translation)" :key="index">
+                                    <td class="td-data">
+                                        {{cost.supplier_name}}-{{(Number(cost.cost_no_VAT) + Number(cost.VAT)).toFixed(0)}}
+                                    </td>
+                                </div>
+                            </div>
+                            <td class="total-cost-per-type" v-if="index===0">
+                                {{totalCostPerMonth(var_costs[`${month}`].slice(1), 'cost_no_VAT', 'VAT')}}
+                            </td>
 
-                       </tr>
-                       </tbody>
-                   </table>
-                   <table>
-                       <thead>
-                       <tr>
-                           <th v-for="(head, index) of tableHeadsFC" :key="index">{{head}}</th>
-                       </tr>
-                       </thead>
-                       <tbody>
-                       <tr v-for="(cost, index) of fixed_costs[`${month}`].slice(1)" :key="index">
-                           <td class="td-normal">{{cost.supplier_name}}</td>
-                           <td class="td-normal">{{cost.cost}}</td>
-                           <td class="td-normal">{{cost.dds}}</td>
-                           <td class="td-normal">{{
-                               sumTwoNumbersAndRoundThem(cost.cost, cost.dds)
-                               }}
-                           </td>
-                           <td class="total-cost-per-type"  v-if="index===0">
-                               {{totalCostPerMonth(fixed_costs[`${month}`].slice(1), 'cost', 'dds')}}
-                           </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th v-for="(head, index) of tableHeadsFC" :key="index">{{head}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(cost, index) of fixed_costs[`${month}`].slice(1)" :key="index">
+                            <td class="td-normal">{{cost.supplier_name}}</td>
+                            <td class="td-normal">{{cost.cost}}</td>
+                            <td class="td-normal">{{cost.dds}}</td>
+                            <td class="td-normal">{{
+                                sumTwoNumbersAndRoundThem(cost.cost, cost.dds)
+                                }}
+                            </td>
+                            <td class="total-cost-per-type"  v-if="index===0">
+                                {{totalCostPerMonth(fixed_costs[`${month}`].slice(1), 'cost', 'dds')}}
+                            </td>
 
-                       </tr>
-                       </tbody>
-                   </table>
-                   <table>
-                       <thead>
-                       <tr>
-                           <th v-for="(head, index) of tableHeadsSummary" :key="index">{{head}}</th>
-                       </tr>
-                       </thead>
-                       <tbody>
-                            <tr>
-                                <td class="total-costs" style="color: indianred; font-weight: bold">{{sumTwoNumbersAndRoundThem(
-                                    totalCostPerMonth(fixed_costs[`${month}`].slice(1), 'cost', 'dds'),
-                                    totalCostPerMonth(var_costs[`${month}`].slice(1), 'cost_no_VAT', 'VAT')
-                                    )}}</td>
-                                <td class="total-costs" style="color: orange; font-weight: bold">
-                                    {{getRevenueForMonth(month)}}
-                                </td>
-                                <td class="total-costs" style="color: forestgreen; font-weight: bold" >
-                                    {{Number(getRevenueForMonth(month))-  Number(
-                                    sumTwoNumbersAndRoundThem(totalCostPerMonth(fixed_costs[`${month}`].slice(1), 'cost', 'dds'),
-                                    totalCostPerMonth(var_costs[`${month}`].slice(1), 'cost_no_VAT', 'VAT')))
-                                    }}
-                                </td>
-                            </tr>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th v-for="(head, index) of tableHeadsSummary" :key="index">{{head}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="total-costs" style="color: indianred; font-weight: bold">{{sumTwoNumbersAndRoundThem(
+                                totalCostPerMonth(fixed_costs[`${month}`].slice(1), 'cost', 'dds'),
+                                totalCostPerMonth(var_costs[`${month}`].slice(1), 'cost_no_VAT', 'VAT')
+                                )}}</td>
+                            <td class="total-costs" style="color: orange; font-weight: bold">
+                                {{getRevenueForMonth(month)}}
+                            </td>
+                            <td class="total-costs" style="color: forestgreen; font-weight: bold" >
+                                {{Number(getRevenueForMonth(month))-  Number(
+                                sumTwoNumbersAndRoundThem(totalCostPerMonth(fixed_costs[`${month}`].slice(1), 'cost', 'dds'),
+                                totalCostPerMonth(var_costs[`${month}`].slice(1), 'cost_no_VAT', 'VAT')))
+                                }}
+                            </td>
+                        </tr>
 
 
-                       </tbody>
-                   </table>
-               </div>
-           </div>
-       </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -138,8 +138,9 @@
         },
 
         methods:{
-            totalCostForEachTranslation(arr, translation, property){
+            totalCostForEachTranslation(month, translation, property){
                 let result = 0
+                let arr = this.var_costs[`${month}`].slice(1)
                 let interested_arr = arr.filter(item => item.translation === translation)
                 for(let item of interested_arr){
                     let value = item[`${property}`]
@@ -210,6 +211,13 @@
                     }
                 }
             },
+            sortVarCosts(){
+                for (let costs of Object.values(this.var_costs)){
+                    costs.sort((a, b) => (b.cost_no_VAT - a.cost_no_VAT))
+
+                }
+                console.log(this.var_costs, 'sorted')
+            },
             conductFixedCosts(costs){
                 for (let month of Object.keys(this.fixed_costs)){
                     let cur_month_costs = costs.filter(item => item.month === month)
@@ -232,7 +240,6 @@
             },
             getRevenueForMonth(month){
                 let foundObj = this.revenues.find(item => item.month === month)
-                console.log(foundObj)
                     if(foundObj){
                         return Number(foundObj.revenue_with_VAT).toFixed(0)
                         }
@@ -249,6 +256,7 @@
 
             this.conductVarCosts(raw_var_costs)
             this.conductFixedCosts(raw_fixed_costs)
+            this.sortVarCosts()
 
 
 

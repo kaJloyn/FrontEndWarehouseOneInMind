@@ -180,13 +180,26 @@
                         </td>
                         <td>
                             <div v-for="(final, index) in rm[1][2]" :key="index" >
-                                <div>{{final['product_name']}}</div>
+                                <div>{{rm[1][2].length}}</div>
 
                             </div>
                         </td>
                         <td>
                             <div v-for="(final, index) in rm[1][2]" :key="index" >
+                                <div>{{final['product_name']}}</div>
+
+                            </div>
+                        </td>
+
+                        <td>
+                            <div v-for="(final, index) in rm[1][2]" :key="index" >
                                 <div>{{final['product_name_no_size']}}</div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final_qty, index) in rm[1][3]" :key="index" >
+                                <div>{{final_qty}}</div>
 
                             </div>
                         </td>
@@ -234,16 +247,16 @@
 
                             </div>
                         </td>
-                        <td>
-                            <div v-for="(final, index) in rm[1][1]" :key="index" >
-                                <div>{{final.foil_or_print === 'принт' ? 10/60 : 2.5/60}}</div>
-                            </div>
-                        </td>
-                        <td>
-                            <div v-for="(final, index) in rm[1][1]" :key="index" >
-                                <div>{{1.5/60}}</div>
-                            </div>
-                        </td>
+<!--                        <td>-->
+<!--                            <div v-for="(final, index) in rm[1][1]" :key="index" >-->
+<!--                                <div>{{final.foil_or_print === 'принт' ? Number(10/60).toFixed(2) : Number(2.5/60).toFixed(2)}}</div>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            <div v-for="(final, index) in rm[1][1]" :key="index" >-->
+<!--                                <div>{{Number(1.5/60).toFixed(2)}}</div>-->
+<!--                            </div>-->
+<!--                        </td>-->
 
 
                     </tr>
@@ -399,6 +412,12 @@
                         </td>
                         <td>
                             <div v-for="(final, index) in rm[1][2]" :key="index" >
+                                <div>{{rm[1][2].length}}</div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][2]" :key="index" >
                                 <div>{{final['product_name']}}</div>
 
                             </div>
@@ -406,6 +425,13 @@
                         <td>
                             <div v-for="(final, index) in rm[1][2]" :key="index" >
                                 <div>{{final['product_name_no_size']}}</div>
+
+                            </div>
+                        </td>
+
+                        <td>
+                            <div v-for="(final_qty, index) in rm[1][3]" :key="index" >
+                                <div>{{final_qty}}</div>
 
                             </div>
                         </td>
@@ -613,6 +639,12 @@
                         </td>
                         <td>
                             <div v-for="(final, index) in rm[1][2]" :key="index" >
+                                <div>{{rm[1][2].length}}</div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][2]" :key="index" >
                                 <div>{{final['product_name']}}</div>
 
                             </div>
@@ -620,6 +652,12 @@
                         <td>
                             <div v-for="(final, index) in rm[1][2]" :key="index" >
                                 <div>{{final['product_name_no_size']}}</div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final_qty, index) in rm[1][3]" :key="index" >
+                                <div>{{final_qty}}</div>
 
                             </div>
                         </td>
@@ -713,7 +751,7 @@
                 cron_status: false,
                 load_spinner:true,
                 tablePerOrderTh: ['Статус', 'Поръчка', 'Фабрикат', 'Краен', 'Краен2', 'Краен Бр','Размер', 'Цвят', 'foil_or_print',	'foil_type','foil_color','foil_size','letters_or_frame','Клиент', 'Тел' ],
-                tableTotalRmTh:['Статус', 'Фабрикат', 'Бр', 'Краен', 'Краен2', 'Размер', 'Цвят', 'Поръчки', 'foil_or_print','foil_type','foil_color','foil_size','letters_or_frame', 't-печат/печат', 't-залепяне'],
+                tableTotalRmTh:['Статус', 'Фабрикат', 'Бр', 'Общо', 'Краен', 'Краен2','Краен бр' , 'Размер', 'Цвят', 'Поръчки', 'foil_or_print','foil_type','foil_color','foil_size','letters_or_frame'],
 
                 showProcessing:false,
                 showOnHold:false,
@@ -757,8 +795,9 @@
                 return this.all_raw_materials.find(item => item.id === id)
 
             },
-            mrp_plan(orders){
+           mrp_plan(orders){
                 let final_products_copy = cloneDeep(this.all_final_products)
+                // let final_products_copy = JSON.parse(JSON.stringify(this.getFinalProducts()))
                 let total_per_rm = {}
                 let total_per_order = {}
                 let cur_raw_mat_id;
@@ -780,38 +819,55 @@
                     let each_fin_prd_copy = final_products_copy.find(item => item.id === final_product.id)
 
 
+
                     // caluclate per order
-                    if (total_per_order[each_ord.order_id]) {
-                        total_per_order[each_ord.order_id][0].push(cur_raw_mat)
-                        total_per_order[each_ord.order_id][1].push(final_product)
-                        total_per_order[each_ord.order_id][3].push(each_ord)
-                        if (each_fin_prd_copy.quantity > 0) {
-                            total_per_order[each_ord.order_id][2].push(1)
-                            each_fin_prd_copy.quantity -= 1
-                        }
-                    }
-                    else {
-                        total_per_order[each_ord.order_id] = [[], [], [], []]
-                        total_per_order[each_ord.order_id][0].push(cur_raw_mat)
-                        total_per_order[each_ord.order_id][1].push(final_product)
-                        total_per_order[each_ord.order_id][3].push(each_ord)
-                        if (each_fin_prd_copy.quantity > 0) {
-                            total_per_order[each_ord.order_id][2].push(1)
-                            each_fin_prd_copy.quantity -= 1
-                        }
-                    }
+                    // if (total_per_order[each_ord.order_id]) {
+                    //     total_per_order[each_ord.order_id][0].push(cur_raw_mat)
+                    //     total_per_order[each_ord.order_id][1].push(final_product)
+                    //     total_per_order[each_ord.order_id][3].push(each_ord)
+                    //     if (each_fin_prd_copy.quantity > 0) {
+                    //         total_per_order[each_ord.order_id][2].push(1)
+                    //         each_fin_prd_copy.quantity -= 1
+                    //     }
+                    // }
+                    // else {
+                    //     total_per_order[each_ord.order_id] = [[], [], [], []]
+                    //     total_per_order[each_ord.order_id][0].push(cur_raw_mat)
+                    //     total_per_order[each_ord.order_id][1].push(final_product)
+                    //     total_per_order[each_ord.order_id][3].push(each_ord)
+                    //     if (each_fin_prd_copy.quantity > 0) {
+                    //         total_per_order[each_ord.order_id][2].push(1)
+                    //         each_fin_prd_copy.quantity -= 1
+                    //     }
+                    // }
 
                     // calcualte per rm
                     if (total_per_rm[cur_raw_mat.id]){
                         total_per_rm[cur_raw_mat.id][0] += 1
                         total_per_rm[cur_raw_mat.id][1].push(final_product)
                         total_per_rm[cur_raw_mat.id][2].push(each_ord)
+                        // console.log(each_fin_prd_copy, 'quantity final products', final_product)
+                        if (each_fin_prd_copy.quantity > 0) {
+                            total_per_rm[cur_raw_mat.id][3].push(1)
+                            each_fin_prd_copy.quantity -= 1
+                        }
+                        else{
+                            total_per_rm[cur_raw_mat.id][3].push(0)
+                        }
+
 
                     }
                     else {
-                        total_per_rm[cur_raw_mat.id] = [1, [], []]
+                        total_per_rm[cur_raw_mat.id] = [1, [], [], []]
                         total_per_rm[cur_raw_mat.id][1].push(final_product)
                         total_per_rm[cur_raw_mat.id][2].push(each_ord)
+                        if (each_fin_prd_copy.quantity > 0) {
+                            total_per_rm[cur_raw_mat.id][3].push(1)
+                            each_fin_prd_copy.quantity -= 1
+                        }
+                    else{
+                            total_per_rm[cur_raw_mat.id][3].push(0)
+                        }
 
                     }
 
@@ -842,6 +898,8 @@
 
             // this.mrp_processing_ord = this.mrp_plan(this.order_processing)[1]
             this.mrp_processing_rm =  this.mrp_plan(this.order_processing)[0]
+            console.log(this.mrp_processing_rm, 'mrp processing rm')
+            // console.log(this.mrp_plan(this.order_processing), 'this.mrp_plan(this.order_processing)')
 
             // this.mrp_on_hold_ord = this.mrp_plan(this.orders_on_hold)[1]
             this.mrp_on_hold_rm = this.mrp_plan(this.orders_on_hold)[0]
@@ -898,7 +956,7 @@
     }
     td{
         font-size: 12px;
-        padding: 10px;
+        padding: 5px;
         border: 1px solid black;
         border-collapse: collapse;
     }
