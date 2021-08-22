@@ -191,12 +191,12 @@
                             </div>
                         </td>
 
-                        <td>
-                            <div v-for="(final, index) in rm[1][2]" :key="index" >
-                                <div>{{final['product_name_no_size']}}</div>
+<!--                        <td>-->
+<!--                            <div v-for="(final, index) in rm[1][2]" :key="index" >-->
+<!--                                <div>{{final['product_name_no_size']}}</div>-->
 
-                            </div>
-                        </td>
+<!--                            </div>-->
+<!--                        </td>-->
                         <td>
                             <div v-for="(final_qty, index) in rm[1][3]" :key="index" >
                                 <div>{{final_qty}}</div>
@@ -257,6 +257,37 @@
 <!--                                <div>{{Number(1.5/60).toFixed(2)}}</div>-->
 <!--                            </div>-->
 <!--                        </td>-->
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.label}}</div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.ribbon_strip}}</div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.back_print}}</div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.front_print}}</div>
+
+                            </div>
+                        </td>
+
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.other_specifications}}</div>
+
+                            </div>
+                        </td>
 
 
                     </tr>
@@ -422,12 +453,12 @@
 
                             </div>
                         </td>
-                        <td>
-                            <div v-for="(final, index) in rm[1][2]" :key="index" >
-                                <div>{{final['product_name_no_size']}}</div>
+<!--                        <td>-->
+<!--                            <div v-for="(final, index) in rm[1][2]" :key="index" >-->
+<!--                                <div>{{final['product_name_no_size']}}</div>-->
 
-                            </div>
-                        </td>
+<!--                            </div>-->
+<!--                        </td>-->
 
                         <td>
                             <div v-for="(final_qty, index) in rm[1][3]" :key="index" >
@@ -480,6 +511,37 @@
                         <td>
                             <div v-for="(final, index) in rm[1][1]" :key="index" >
                                 <div>{{final.letters_or_frame}}</div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.label}}</div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.ribbon_strip}}</div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.back_print}}</div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.front_print}}</div>
+
+                            </div>
+                        </td>
+
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.other_specifications}}</div>
 
                             </div>
                         </td>
@@ -649,12 +711,12 @@
 
                             </div>
                         </td>
-                        <td>
-                            <div v-for="(final, index) in rm[1][2]" :key="index" >
-                                <div>{{final['product_name_no_size']}}</div>
+<!--                        <td>-->
+<!--                            <div v-for="(final, index) in rm[1][2]" :key="index" >-->
+<!--                                <div>{{final['product_name_no_size']}}</div>-->
 
-                            </div>
-                        </td>
+<!--                            </div>-->
+<!--                        </td>-->
                         <td>
                             <div v-for="(final_qty, index) in rm[1][3]" :key="index" >
                                 <div>{{final_qty}}</div>
@@ -709,6 +771,37 @@
 
                             </div>
                         </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.label}}</div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.ribbon_strip}}</div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.back_print}}</div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.front_print}}</div>
+
+                            </div>
+                        </td>
+
+                        <td>
+                            <div v-for="(final, index) in rm[1][1]" :key="index" >
+                                <div>{{final.other_specifications}}</div>
+
+                            </div>
+                        </td>
 
 
                     </tr>
@@ -751,7 +844,11 @@
                 cron_status: false,
                 load_spinner:true,
                 tablePerOrderTh: ['Статус', 'Поръчка', 'Фабрикат', 'Краен', 'Краен2', 'Краен Бр','Размер', 'Цвят', 'foil_or_print',	'foil_type','foil_color','foil_size','letters_or_frame','Клиент', 'Тел' ],
-                tableTotalRmTh:['Статус', 'Фабрикат', 'Бр', 'Общо', 'Краен', 'Краен2','Краен бр' , 'Размер', 'Цвят', 'Поръчки', 'foil_or_print','foil_type','foil_color','foil_size','letters_or_frame'],
+                tableTotalRmTh:[
+                                'Статус', 'Фабрикат', 'Бр', 'Общо', 'Краен','Краен бр' , 'Размер', 'Цвят', 'Поръчки',
+                                'foil_or_print','foil_type','foil_color','foil_size','letters_or_frame', 'label',
+                                'ribbon_strip', 'back_print', 'front_print','other_specifications'
+                                ],
 
                 showProcessing:false,
                 showOnHold:false,
