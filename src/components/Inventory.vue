@@ -1,7 +1,7 @@
 <template>
 <div>
   <section class="search">
-    <input @blur="onSearch" @keyup.enter="onSearch" id="search-data" type="text">
+    <input @blur="onSearch" @keyup.enter="onSearch" id="search-data" type="text" @click="showAll">
     <button @click="onSearch">Търси</button>
     <button @click="showAll" class="show-all"> покажи всички</button>
   </section>
@@ -15,10 +15,10 @@
       <th>пол</th>
       <th>размер</th>
       <th>цвят</th>
-      <th>дата последна ревизия</th>
-      <th>наличснот на ревизия</th>
-      <th>продажби от последна ревизия</th>
-      <th>прогнозно количество</th>
+      <th>наличснот</th>
+      <th>всички продажби</th>
+      <th>продажби текущ месец</th>
+      <th>продажби минал месец</th>
       <th>поръчки</th>
     </tr>
     </thead>
@@ -31,10 +31,10 @@
       <td>{{rawMat.sex}}</td>
       <td>{{rawMat.size}}</td>
       <td>{{rawMat.color}}</td>
-      <td>{{rawMat.date_created}}</td>
       <td>{{rawMat.quantity}}</td>
       <td>{{rawMat.sales_so_far}}</td>
-      <td  style="color: red"> {{rawMat.quantity - rawMat.sales_so_far}}</td>
+      <td>{{rawMat.current_month_sales}}</td>
+      <td>{{rawMat.last_month_sales}}</td>
       <td>
         <ul v-for="order in findOrderedQuantityByRawMatId(rawMat.id)" :key="order.id">
           {{order.quantity}} --- {{getOrderDate(order.order_number)}}
@@ -119,14 +119,22 @@ export default {
     text-align: center;
   }
   th{
-    font-size: 20px;
+    font-size: 14px;
     text-transform: uppercase;
     width: auto;
+    height: 40px;
     text-align: center;
     position: sticky;
     top: 0;
     background: #545c64;
     color: #fff;
+    padding: 5px;
+  }
+  td{
+    max-width: 150px;
+    border: solid 1px;
+    border-color: grey;
+    border-radius: 3px;
   }
   .search{
     position: sticky;

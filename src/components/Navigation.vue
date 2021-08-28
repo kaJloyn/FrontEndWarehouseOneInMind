@@ -2,7 +2,7 @@
     <div>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <nav>
-            <ul id="all-links">
+            <ul id="all-links" clas="wtf">
                 <li>
                     <router-link class="link-r" :to="{name:'home'}">Home</router-link>
                 </li>
@@ -186,8 +186,7 @@ export default {
 @media screen and (max-width: 1024px) {
     nav{
         display: flex;
-        flex-flow: column;
-        flex-wrap: wrap;
+        flex-flow: row;
         min-width: 100%;
         min-height: 20%;
         overflow: hidden;
