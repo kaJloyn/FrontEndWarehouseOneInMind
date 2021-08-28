@@ -12,6 +12,16 @@ const requestsDataMixin = {
         }
     },
     methods:{
+        async getGogs(){
+            const preFix = 'cogs'
+            const finalUrl = baseUrl + preFix
+            const result = await axios.get(finalUrl,{
+                headers: {
+                    'Authorization': `token ${getUserToken()}`
+                }
+            })
+            return  result.data
+        },
         async getCronStatus(){
             const preFix = 'CronStatus'
             const finalUrl = baseUrl + preFix

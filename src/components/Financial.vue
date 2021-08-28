@@ -71,12 +71,19 @@
                             <td class="total-costs" style="color: orange; font-weight: bold">
                                 {{getRevenueForMonth(month)}}
                             </td>
+                            <td class="total-costs">
+                                {{(cogs[`${month}`][1] * 1.2).toFixed(0) }}
+                            </td>
+                            <td class="total-costs">
+                                {{cogs[`${month}`][0]}}
+                            </td>
                             <td class="total-costs" style="color: forestgreen; font-weight: bold" >
                                 {{Number(getRevenueForMonth(month))-  Number(
                                 sumTwoNumbersAndRoundThem(totalCostPerMonth(fixed_costs[`${month}`].slice(1), 'cost', 'dds'),
                                 totalCostPerMonth(var_costs[`${month}`].slice(1), 'cost_no_VAT', 'VAT')))
                                 }}
                             </td>
+
                         </tr>
 
 
@@ -90,6 +97,7 @@
 
 <script>
     import requestDataMixin from "@/mixins/requestDataMixin";
+    import {months} from "../contexts/dates";
 
 
     export default {
@@ -132,8 +140,23 @@
                 months:[],
                 tableHeadsVC: ['Основание', 'Сума', 'ДДС', 'Общо', 'Контрагент', 'Общ Разход с ДДС',],
                 tableHeadsFC: ['Основание', 'Сума', 'ДДС', 'Общо', 'Общ Разход с ДДС',],
-                tableHeadsSummary:['Общо разходи с ДДС', 'Оборот с ДДС', 'Разлика'],
+                tableHeadsSummary:['Общо разходи с ДДС', 'Оборот с ДДС', 'Оборот Сайт', 'COGS', 'Разлика'],
                 currentMonth:'',
+                raw_cogs: [],
+                cogs :{
+                    'January':[],
+                    'February':[],
+                    'March':[],
+                    'April':[],
+                    'May':[],
+                    'June':[],
+                    'July':[],
+                    'August':[],
+                    'September':[],
+                    'October':[],
+                    'November':[],
+                    'December':[],
+                }
             }
         },
 
@@ -216,7 +239,6 @@
                     costs.sort((a, b) => (b.cost_no_VAT - a.cost_no_VAT))
 
                 }
-                console.log(this.var_costs, 'sorted')
             },
             conductFixedCosts(costs){
                 for (let month of Object.keys(this.fixed_costs)){
@@ -244,7 +266,24 @@
                         return Number(foundObj.revenue_with_VAT).toFixed(0)
                         }
                     return undefined
+                },
+            conductCogs(){
+                let year = new Date().getFullYear()
+                for (let cog of Object.values(this.raw_cogs[0])){
+                    if (typeof cog == "string"){
+                        cog = cog.replace('[', '')
+                        cog = cog.replace(']', '')
+                        cog = cog.split(',')
+                        cog = cog.map(item => Number(item))
+                        if(cog[3] === year){
+                            let strMonth = months[`${cog[2]}`]
+                            let cog_and_rev = cog.slice(0, 2)
+                            this.cogs[`${strMonth}`] = cog_and_rev
+                        }
+                    }
                 }
+                console.log(this.cogs)
+            }
 
         },
         async created() {
@@ -252,11 +291,14 @@
             let raw_fixed_costs = await this.getFixedCostsCosts()
             this.revenues =  await this.getRevenue()
             this.counterparties = await this.getCounterParties()
+            this.raw_cogs = await this.getGogs()
 
 
             this.conductVarCosts(raw_var_costs)
             this.conductFixedCosts(raw_fixed_costs)
             this.sortVarCosts()
+
+            this.conductCogs()
 
 
 
