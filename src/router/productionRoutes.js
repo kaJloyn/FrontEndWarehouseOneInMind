@@ -1,5 +1,5 @@
-import BOM from "../components/BOM";
-import CreateBom from "../components/CreateBom";
+import BOM from "../views/BOM";
+import CreateBom from "../views/CreateBom";
 const productionRoutes = [
     {
         path: 'bom`s',

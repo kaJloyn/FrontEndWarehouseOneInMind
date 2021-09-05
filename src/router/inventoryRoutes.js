@@ -1,4 +1,4 @@
-import Picture from "../components/Picture";
+import Picture from "../views/Picture";
 
 const inventoryRoutes = [
     {

@@ -1,5 +1,5 @@
-import Orders from "@/components/Orders";
-import stockOrderDetails from "@/components/stockOrderDetails";
+import Orders from "@/views/Orders";
+import stockOrderDetails from "@/views/stockOrderDetails";
 
 
 const ordersRoutes= [

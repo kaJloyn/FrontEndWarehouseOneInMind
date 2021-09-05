@@ -9,7 +9,7 @@
 
 <script>
   import requestDataMixin from "@/mixins/requestDataMixin";
-  import Navigation from "./components/Navigation";
+  import Navigation from "./views/Navigation";
   export default {
     name: 'App',
     components: {Navigation},

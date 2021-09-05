@@ -1,22 +1,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Home from "@/components/Home";
+import Home from "@/views/Home";
 import ordersRoutes from "./ordersRoutes";
-import Login from "@/components/Login";
+import Login from "@/views/Login";
 import inventoryRoutes from "./inventoryRoutes";
 import productionRoutes from "./productionRoutes";
-import Qrcode_Out from "../components/Qrcode_Out";
-import Qrcode_In from "../components/Qrcode_In"
-import QRresult_Out from "../components/QRresult_Out"
-import QRresult_In from  "../components/QRresult-In"
-import All_QR_Raw_Mat from "../components/All_QR_Raw_Mat"
-import All_QR_Final_Prod from "../components/All_QR_Final_Prod";
-import Inventory_Final_Prd from "../components/Inventory_Final_Prd";
-import MRP from "../components/MRP";
-import Qrcode_Revision from "../components/Qrcode_Revision";
-import QRresult_Revision from "../components/QRresult_Revision";
-import Financial from "../components/Financial";
+import Qrcode_Out from "../views/Qrcode_Out";
+import Qrcode_In from "../views/Qrcode_In"
+import QRresult_Out from "../views/QRresult_Out"
+import QRresult_In from "../views/QRresult-In"
+import All_QR_Raw_Mat from "../views/All_QR_Raw_Mat"
+import All_QR_Final_Prod from "../views/All_QR_Final_Prod";
+import Inventory_Final_Prd from "../views/Inventory_Final_Prd";
+import MRP from "../views/MRP";
+import Qrcode_Revision from "../views/Qrcode_Revision";
+import QRresult_Revision from "../views/QRresult_Revision";
+import Financial from "../views/Financial";
 
 
 
@@ -113,7 +113,7 @@ const routes = [
     {path: '/inventory',
         name:'inventory',
         // lazy loading, only when it is required
-        component: () => import(/* webpackChunkName: "Inventory" */ '@/components/Inventory.vue'),
+        component: () => import(/* webpackChunkName: "Inventory" */ '@/views/Inventory.vue'),
         beforeEnter(to, from, next){
             if(sessionStorage.getItem('authToken')){
                 next()
