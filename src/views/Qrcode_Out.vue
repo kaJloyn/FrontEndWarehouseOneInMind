@@ -21,7 +21,7 @@
         data() {
             return{
                 camera: 'auto',
-                result: '',
+                result: {},
                 showScanConfirmation: false,
                 color: 'red'
 
@@ -51,9 +51,11 @@
                     let current_final_product = finl_prodcs.find(item => item.id === searched_id)
                     if( current_raw && !current_final_product){
                         this.result = current_raw
+                        this.result.product_type = 'полу-фаб'
                     }
                     else if(current_final_product && !current_raw){
                         this.result = current_final_product
+                        this.result.product_type = 'краен'
                     }
                     else if (!current_raw && !current_final_product){
                         window.alert('Този QR не е от полуфабрикати или крайни изделия')

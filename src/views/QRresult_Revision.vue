@@ -3,6 +3,7 @@
         <div class="scn-result">
             <img class="picture-rm" :src="pic" alt="">
             <article class="data">
+                <div class="product-type">{{product_type}}</div>
                 <div class="item-data">{{item_name}}</div>
                 <div class="item-data">{{size}}</div>
                 <div class="item-data">{{color}}</div>
@@ -33,6 +34,7 @@
                 input_qty:0,
                 scanned_id: null,
                 item_qty:null,
+                product_type:''
             }
         },
         methods:{
@@ -72,13 +74,14 @@
             }
         },
         created() {
-
             this.scanned_id = Number(this.$route.params['result']['id'])
             this.item_qty = Number(this.$route.params['result']['quantity'])
-            this.pic = this.$route.params['result']['pic']
+            this.pic = this.$route.params['result']['image']
             this.item_name = this.$route.params['result']['title'] || this.$route.params['result']['name']
             this.size = this.$route.params['result']['size']
             this.color = this.$route.params['result']['color']
+            this.product_type = this.$route.params['result']['product_type']
+
         }
     }
 </script>
@@ -118,6 +121,11 @@
         color: royalblue;
         width: 250px;
         height: 50px;
+    }
+    .product-type{
+        color: yellow;
+        font-weight: bold;
+        font-size: 35px;
     }
 
 

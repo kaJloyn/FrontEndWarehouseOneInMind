@@ -21,20 +21,22 @@
                 <li v-show="this.checkIfLoggedIn()">
                     <router-link class="link-r" :to="{name:'inventory'}">Нал. Полу-Фаб.</router-link>
                 </li>
+
                 <li v-show="this.checkIfLoggedIn()">
                     <router-link class="link-r" :to="{name:'Inventory_Final_Prd'}">Нал. Кр. Изделия</router-link>
                 </li>
+
                 <li v-show="this.checkIfLoggedIn()">
                     <router-link class="link-r" :to="{name:'stockOrders'}">Пор.Дост.</router-link>
                 </li>
 
 
-<!--                <li v-show="this.checkIfLoggedIn()">-->
-<!--                    <router-link class="link-r" :to="{name:'bill of materials'}" >BOM</router-link>-->
-<!--                </li>-->
-<!--                <li v-show="this.checkIfLoggedIn()">-->
-<!--                    <router-link class="link-r" :to="{name:'create bom'}" >Create BOM</router-link>-->
-<!--                </li>-->
+                <li v-show="this.checkIfLoggedIn()">
+                    <router-link class="link-r" :to="{name:'absolute raw materials stock'}" >Нал.Мат.Шиене</router-link>
+                </li>
+                <!--                <li v-show="this.checkIfLoggedIn()">-->
+                <!--                    <router-link class="link-r" :to="{name:'create bom'}" >Create BOM</router-link>-->
+                <!--                </li>-->
 
                 <li v-show="this.checkIfLoggedIn()">
                     <router-link class="link-r" :to="{name:'All_QR_Raw_Mat'}" >QR Полу-Фаб.</router-link>
@@ -67,80 +69,80 @@
 
 <script>
 
-import axios from "axios";
-import getUserToken from "@/common/userToken";
-import baseUrl from "../common/settings";
-export default {
-    name: "Navigation",
-    data(){
-        return {
-            username: '',
-            mobileView:false,
-            showNav: false,
-            screenWith: window.screen.width
+    import axios from "axios";
+    import getUserToken from "@/common/userToken";
+    import baseUrl from "../common/settings";
+    export default {
+        name: "Navigation",
+        data(){
+            return {
+                username: '',
+                mobileView:false,
+                showNav: false,
+                screenWith: window.screen.width,
+                stockClicked: false,
 
-        }
-    },
-    computed:{
 
-    },
-
-    methods:{
-        async logOut(){
-
-            const preFix = 'logout/'
-            const finalUrl = baseUrl + preFix
-            try{
-                window.alert('Are you suer that you want to logout')
-                await axios.get(finalUrl, {
-                    headers: {
-                        'Authorization': `token ${getUserToken()}`
-                    }
-                })
-                sessionStorage.removeItem('authToken')
-                sessionStorage.removeItem('username')
-                sessionStorage.removeItem('email')
-                this.$store.commit('updateCurrentUsername', sessionStorage.getItem('username'))
-                this.$router.push({name:'home'})
-            }
-            catch (error){
-                console.log(error)
             }
         },
-        checkIfLoggedIn(){
-            return this.$store.getters.getIsUserLoggedIn
+        computed:{
+        },
 
-        },
-        currentUsername(){
-            return this.$store.getters.getCurrentUsername
-        },
-        hamburger() {
-            let x = document.getElementById("all-links");
-            if (x.style.display === "block") {
-                x.style.display = "none";
-            } else {
-                x.style.display = "block";
+        methods:{
+            async logOut(){
+                const preFix = 'logout/'
+                const finalUrl = baseUrl + preFix
+                try{
+                    window.alert('Are you suer that you want to logout')
+                    await axios.get(finalUrl, {
+                        headers: {
+                            'Authorization': `token ${getUserToken()}`
+                        }
+                    })
+                    sessionStorage.removeItem('authToken')
+                    sessionStorage.removeItem('username')
+                    sessionStorage.removeItem('email')
+                    this.$store.commit('updateCurrentUsername', sessionStorage.getItem('username'))
+                    this.$router.push({name:'home'})
+                }
+                catch (error){
+                    console.log(error)
                 }
             },
-        getScreenWith(){
-            window.addEventListener('resize', () => {
-                this.screenWith = window.screen.width
-            })
+            checkIfLoggedIn(){
+                return this.$store.getters.getIsUserLoggedIn
+
+            },
+            currentUsername(){
+                return this.$store.getters.getCurrentUsername
+            },
+            hamburger() {
+                let x = document.getElementById("all-links");
+                if (x.style.display === "block") {
+                    x.style.display = "none";
+                } else {
+                    x.style.display = "block";
+                }
+            },
+            getScreenWith(){
+                window.addEventListener('resize', () => {
+                    this.screenWith = window.screen.width
+                })
+            }
+        },
+
+
+        created() {
+
+
+        },
+        mounted() {
+            this.$store.commit('updateCurrentUsername', sessionStorage.getItem('username'))
+            this.getScreenWith()
+
         }
-    },
-
-
-    created() {
-
-
-    },
-    mounted() {
-        this.$store.commit('updateCurrentUsername', sessionStorage.getItem('username'))
-        this.getScreenWith()
 
     }
-
-}
 
 </script>
 
@@ -183,24 +185,24 @@ export default {
         color: mediumseagreen;
     }
 
-@media screen and (max-width: 1024px) {
-    nav{
-        display: flex;
-        flex-flow: row;
-        min-width: 100%;
-        min-height: 20%;
-        overflow: hidden;
-        background-color: #333;
-        position: relative;
-        align-content: flex-start;
+    @media screen and (max-width: 1024px) {
+        nav{
+            display: flex;
+            flex-flow: row;
+            min-width: 100%;
+            min-height: 20%;
+            overflow: hidden;
+            background-color: #333;
+            position: relative;
+            align-content: flex-start;
+        }
+        .link-r{
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            display: flex;
+        }
     }
-    .link-r{
-        color: white;
-        text-decoration: none;
-        font-size: 12px;
-        display: flex;
-    }
-}
 
 
 
