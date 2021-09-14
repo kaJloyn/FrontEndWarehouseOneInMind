@@ -30,14 +30,6 @@
                     <router-link class="link-r" :to="{name:'stockOrders'}">Пор.Дост.</router-link>
                 </li>
 
-
-                <li v-show="this.checkIfLoggedIn()">
-                    <router-link class="link-r" :to="{name:'absolute raw materials stock'}" >Нал.Мат.Шиене</router-link>
-                </li>
-                <!--                <li v-show="this.checkIfLoggedIn()">-->
-                <!--                    <router-link class="link-r" :to="{name:'create bom'}" >Create BOM</router-link>-->
-                <!--                </li>-->
-
                 <li v-show="this.checkIfLoggedIn()">
                     <router-link class="link-r" :to="{name:'All_QR_Raw_Mat'}" >QR Полу-Фаб.</router-link>
                 </li>
@@ -50,6 +42,12 @@
                 <li v-show="this.checkIfLoggedIn()">
                     <router-link class="link-r" :to="{name:'financial'}">Finance</router-link>
                 </li>
+                <li v-show="this.checkIfLoggedIn()">
+                    <router-link class="link-r" :to="{name:'absolute raw materials stock'}" >Нал.Мат.Шиене</router-link>
+                </li>
+                <!--                <li v-show="this.checkIfLoggedIn()">-->
+                <!--                    <router-link class="link-r" :to="{name:'create bom'}" >Create BOM</router-link>-->
+                <!--                </li>-->
 
                 <span class="welcome-msg" v-show="this.checkIfLoggedIn()">
                     <li class="link-r" >
