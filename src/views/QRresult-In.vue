@@ -76,7 +76,7 @@
         created() {
             this.scanned_id = Number(this.$route.params['result']['id'])
             this.item_qty = Number(this.$route.params['result']['quantity'])
-            this.pic = this.$route.params['result']['image']
+            this.pic = this.pic = this.$route.params['result']['image'] || this.$route.params['result']['pic']
             this.item_name = this.$route.params['result']['title'] || this.$route.params['result']['name']
             this.size = this.$route.params['result']['size']
             this.color = this.$route.params['result']['color']
