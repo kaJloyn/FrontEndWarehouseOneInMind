@@ -35,7 +35,9 @@
                 scanned_id: null,
                 item_qty:null,
                 title:null,
-                product_type:''
+                product_type:'',
+                cross_pn: null,
+                final_relation_raw_material:null,
             }
         },
         methods:{
@@ -51,8 +53,8 @@
                     let finl_prodcs = await this.getFinalProducts()
 
 
-                    let scanned_raw_mat = raw_matrls.find(item => item.id ===this.scanned_id && item.title === this.item_name)
-                    let scanned_final_product = finl_prodcs.find(item => item.id === this.scanned_id && item.name === this.item_name)
+                    let scanned_raw_mat = raw_matrls.find(item => item.id ===this.scanned_id && item.title === this.item_name && item.cross_pn === this.cross_pn)
+                    let scanned_final_product = finl_prodcs.find(item => item.id ===this.scanned_id && item.name === this.item_name && item.raw_material === this.final_relation_raw_material)
                     if (scanned_raw_mat && !scanned_final_product){
                         await this.updateRawMaterialQauntity(this.scanned_id, final_qty)
                     }
@@ -82,6 +84,8 @@
             this.size = this.$route.params['result']['size']
             this.color = this.$route.params['result']['color']
             this.product_type = this.$route.params['result']['product_type']
+            this.cross_pn = this.$route.params['result']['cross_pn']
+            this.final_relation_raw_material = this.$route.params['result']['raw_material']
         }
     }
 </script>

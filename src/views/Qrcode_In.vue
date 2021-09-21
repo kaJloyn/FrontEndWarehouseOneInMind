@@ -37,18 +37,24 @@
                 }
             },
             async onDecode(content) {
-
                 if (content){
                     this.color = 'green'
-                    let searched_id = Number(content)
-                    // let searched_id = 1413
+                    let result = content.split('@!')
+                    let searched_id = Number(result[0])
+                    let instance = result[1]
+
+                    let raw_materials = await this.getRawMaterials()
+                    let final_products = await this.getFinalProducts()
+                    let current_raw;
+                    let current_final_product;
+                    if(instance === 'RawMaterial'){
+                        current_raw  = raw_materials.find(item => item.id === searched_id)
+                    }
+                    else if(instance === 'FinalProduct'){
+                        current_final_product = final_products.find(item => item.id === searched_id)
+                    }
 
 
-                    let raw_matrls = await this.getRawMaterials()
-                    let finl_prodcs = await this.getFinalProducts()
-
-                    let current_raw = raw_matrls.find(item => item.id === searched_id)
-                    let current_final_product = finl_prodcs.find(item => item.id === searched_id)
                     if( current_raw && !current_final_product){
                         this.result = current_raw
                         this.result.product_type = 'полу-фаб'
