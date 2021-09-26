@@ -23,7 +23,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr v-for="rawMat in rawMaterials" :key="rawMat.id">
+    <tr v-for="rawMat in getrawMaterials" :key="rawMat.id">
       <td class="id">{{rawMat.id}} </td>
       <td>{{rawMat.title}}</td>
       <td @click="onPictureClick(rawMat.title, rawMat.pic)"><img :src="rawMat.pic" :alt="rawMat.title"></td>
@@ -54,6 +54,13 @@ import requestDataMixin from "@/mixins/requestDataMixin";
 export default {
   name: "Inventory",
   mixins:[requestDataMixin],
+  computed:{
+    getrawMaterials(){
+      let result = this.rawMaterials.filter(item => item.status === 'active')
+      result  = result.sort((a, b) => (a.title + b.title))
+      return result
+    }
+  },
   methods:{
     findOrderedQuantityByRawMatId(id){
       let activeStockOrders = this.stockOrders.filter(order => order.arrived === false)

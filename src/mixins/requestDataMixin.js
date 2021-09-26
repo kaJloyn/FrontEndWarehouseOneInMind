@@ -115,7 +115,6 @@ const requestsDataMixin = {
                 }
             })
             this.rawMaterials = result.data
-            this.rawMaterials.sort((a, b) => (a.id - b.id))
             return  result.data
         },
         async getFinalProducts(){
