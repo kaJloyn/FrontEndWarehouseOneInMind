@@ -43,8 +43,12 @@
                     <router-link class="link-r" :to="{name:'financial'}">Finance</router-link>
                 </li>
                 <li v-show="this.checkIfLoggedIn()">
-                    <router-link class="link-r" :to="{name:'absolute raw materials stock'}" >Нал.Мат.Шиене</router-link>
+                    <router-link class="link-r" :to="{name:'order-recommendation'}">ПРЕДЛОЖ-ПОР</router-link>
                 </li>
+
+<!--                <li v-show="this.checkIfLoggedIn()">-->
+<!--                    <router-link class="link-r" :to="{name:'absolute raw materials stock'}" >Нал.Мат.Шиене</router-link>-->
+<!--                </li>-->
                 <!--                <li v-show="this.checkIfLoggedIn()">-->
                 <!--                    <router-link class="link-r" :to="{name:'create bom'}" >Create BOM</router-link>-->
                 <!--                </li>-->

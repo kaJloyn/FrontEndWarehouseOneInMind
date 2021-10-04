@@ -558,6 +558,7 @@
                     // }
 
                     // calcualte per rm
+                    console.log(cur_raw_mat.id, 'current raw')
                     if (total_per_rm[cur_raw_mat.id]){
                         total_per_rm[cur_raw_mat.id][0] += Number(each_ord.product_quantity)
                         total_per_rm[cur_raw_mat.id][1].push(final_product)
@@ -581,10 +582,9 @@
                             total_per_rm[cur_raw_mat.id][3].push(1)
                             each_fin_prd_copy.quantity -= 1
                         }
-                    else{
-                            total_per_rm[cur_raw_mat.id][3].push(0)
-                        }
-
+                        else{
+                                total_per_rm[cur_raw_mat.id][3].push(0)
+                            }
                     }
 
                 }

@@ -17,6 +17,7 @@ import MRP from "../views/MRP";
 import Qrcode_Revision from "../views/Qrcode_Revision";
 import QRresult_Revision from "../views/QRresult_Revision";
 import Financial from "../views/Financial";
+import OrderRecomendation from "../views/OrderRecomendation";
 
 
 
@@ -24,6 +25,17 @@ Vue.use(VueRouter)
 
 const routes = [
     {path: '/', component: Home},
+
+    {path: 'order-recommendation', component: OrderRecomendation, name:'order-recommendation',
+        beforeEnter(to, from, next){
+            if(sessionStorage.getItem('authToken')){
+                next()
+            }
+            else{
+                next('/login')
+            }
+        }
+    },
     {path: 'QR-OUT', component: Qrcode_Out, name:'qrcode_out',
         beforeEnter(to, from, next){
             if(sessionStorage.getItem('authToken')){
