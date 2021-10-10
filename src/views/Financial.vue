@@ -72,7 +72,7 @@
                                 {{getRevenueForMonth(month)}}
                             </td>
                             <td class="total-costs">
-                                {{(cogs[`${month}`][1] * 1.2).toFixed(0)}} wdasd
+                                {{(cogs[`${month}`][1] * 1.2).toFixed(0)}}
                             </td>
                             <td class="total-costs">
                                 {{cogs[`${month}`][0]}}
