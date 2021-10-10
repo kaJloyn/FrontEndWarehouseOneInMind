@@ -12,6 +12,16 @@ const requestsDataMixin = {
         }
     },
     methods:{
+        async getKpiB2cShipments(){
+            const preFix = 'kpi/b2cshipments'
+            const finalUrl = baseUrl + preFix
+            const result = await axios.get(finalUrl,{
+                headers: {
+                    'Authorization': `token ${getUserToken()}`
+                }
+            })
+            return  result.data
+        },
         async getGogs(){
             const preFix = 'cogs'
             const finalUrl = baseUrl + preFix

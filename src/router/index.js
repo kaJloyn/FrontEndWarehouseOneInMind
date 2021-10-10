@@ -18,7 +18,7 @@ import Qrcode_Revision from "../views/Qrcode_Revision";
 import QRresult_Revision from "../views/QRresult_Revision";
 import Financial from "../views/Financial";
 import OrderRecomendation from "../views/OrderRecomendation";
-
+import KPI from "../views/KPI";
 
 
 Vue.use(VueRouter)
@@ -27,6 +27,17 @@ const routes = [
     {path: '/', component: Home},
 
     {path: 'order-recommendation', component: OrderRecomendation, name:'order-recommendation',
+        beforeEnter(to, from, next){
+            if(sessionStorage.getItem('authToken')){
+                next()
+            }
+            else{
+                next('/login')
+            }
+        }
+    },
+
+    {path: 'kpi', component: KPI, name:'KPI',
         beforeEnter(to, from, next){
             if(sessionStorage.getItem('authToken')){
                 next()

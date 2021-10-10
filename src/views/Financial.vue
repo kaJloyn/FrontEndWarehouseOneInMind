@@ -72,7 +72,7 @@
                                 {{getRevenueForMonth(month)}}
                             </td>
                             <td class="total-costs">
-                                {{(cogs[`${month}`][1] * 1.2).toFixed(0) }}
+                                {{(cogs[`${month}`][1] * 1.2).toFixed(0)}} wdasd
                             </td>
                             <td class="total-costs">
                                 {{cogs[`${month}`][0]}}
@@ -83,10 +83,7 @@
                                 totalCostPerMonth(var_costs[`${month}`].slice(1), 'cost_no_VAT', 'VAT')))
                                 }}
                             </td>
-
                         </tr>
-
-
                         </tbody>
                     </table>
                 </div>
@@ -279,6 +276,7 @@
                             let strMonth = months[`${cog[2]}`]
                             let cog_and_rev = cog.slice(0, 2)
                             this.cogs[`${strMonth}`] = cog_and_rev
+                            console.log(cog_and_rev, 'cog and rev')
                         }
                     }
                 }
